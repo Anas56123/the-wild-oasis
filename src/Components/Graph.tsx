@@ -106,11 +106,11 @@ const Graph: React.FC = () => {
   }>({
     series: [
       {
-        name: 'series1',
+        name: 'Total Sales',
         data: [31, 40, 28, 51, 42, 109, 100]
       },
       {
-        name: 'series2',
+        name: 'Extra Sales',
         data: [11, 32, 45, 32, 34, 52, 41]
       }
     ],

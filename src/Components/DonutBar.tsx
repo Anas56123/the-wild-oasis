@@ -65,10 +65,7 @@ interface ApexChartProps {}
 
 interface ApexChartState {
   series: number[];
-  labels: string[];
-  chartOptions: {
-    labels: string[];
-  };
+  labels: string[]
   options: {
     chart: {
       type: string;
@@ -91,10 +88,7 @@ interface ApexChartState {
 const DonutBar: React.FC<ApexChartProps> = () => {
   const [state, setState] = React.useState<ApexChartState>({
     series: [2, 2, 1, 1],
-    labels: ['Apple', 'Mango', 'Orange', 'Watermelon'],
-    chartOptions: {
-      labels: ["Apple", "Mango", "Orange", "Watermelon"],
-    },
+    labels: ['Apples', 'Oranges', 'Berries', 'Grapes'],
     options: {
       chart: {
         type: "donut",
@@ -117,7 +111,7 @@ const DonutBar: React.FC<ApexChartProps> = () => {
   });
 
   return (
-    <div className="w-full h-full max-w-[500px] max-h-[500px]">
+    <div className="w-full h-full max-w-[500px] max-h-[500px] dark:border-slate-800">
       <div id="chart">
         <ReactApexChart
           options={state.options}

@@ -28,12 +28,48 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-1");
               }}
-              className={`flex items-center rounded-xl w-1/2 py-3 px-3 gap-4 ${
+              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-1" ? "bg-slate-900" : ""
               }`}
             >
               <Image height="75" width="75" src={Logo} alt="Logo" />
-              <p className="text-2xl font-bold">Home</p>
+              <p className="text-xl font-bold">Home</p>
+            </Link>
+            <Link
+              href="/dashboard"
+              onMouseEnter={() => {
+                setMouseEnter("link-2");
+              }}
+              onMouseLeave={() => {
+                setMouseEnter('')
+              }}
+              onClick={() => {
+                setMouseClick("link-2");
+              }}
+              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+                (mouseClick || mouseEnter) == "link-2" ? "bg-slate-900" : ""
+              }`}
+            >
+              <Image height="75" width="75" src={Logo} alt="Logo" />
+              <p className="text-xl font-bold">Home</p>
+            </Link>
+            <Link
+              href="/dashboard"
+              onMouseEnter={() => {
+                setMouseEnter("link-3");
+              }}
+              onMouseLeave={() => {
+                setMouseEnter('')
+              }}
+              onClick={() => {
+                setMouseClick("link-3");
+              }}
+              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+                (mouseClick || mouseEnter) == "link-3" ? "bg-slate-900" : ""
+              }`}
+            >
+              <Image height="75" width="75" src={Logo} alt="Logo" />
+              <p className="text-xl font-bold">Home</p>
             </Link>
           </div>
         </aside>
