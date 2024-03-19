@@ -1,6 +1,6 @@
 "use client";
-import { getAccountByEmail } from "@/Data/GET/getAccountByEmail";
 import { insertAccount } from "@/Data/INSERT/insertAccount";
+import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 
 type FormData = {
@@ -17,19 +17,37 @@ export default function Home() {
     userName: "",
     phoneNumber: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
+  const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const phoneNumAsArray = formData.phoneNumber.split('');
-    if (!formData) return;
-    if (formData.phoneNumber.length == 8) return;
-    if (phoneNumAsArray[0] != '2' || '3' || '5' || '9') return;
-    if (formData.password.length > 8) return;
-    if (formData.userName.length > 3) return;
+    const firstDigit = formData.phoneNumber.charAt(0);
+    if (formData.phoneNumber.length !== 8) {
+      console.log(formData.phoneNumber.length);
+      setError("The phone number must be 8 digits");
+      return;
+    }
+    if (!["9", "5", "4", "2"].includes(firstDigit)) {
+      setError("The phone number must start with 2, 3, 5 or 9");
+      return;
+    }
+    if (formData.password.length < 8) {
+      setError("The password must be at least 8 charaters");
+      return;
+    }
+    if (formData.userName.length < 3) {
+      setError("The user name must be at least 3 charaters");
+      return;
+    }
+    setError("");
     console.log("FormData: ", formData);
     async function getData() {
       await insertAccount(formData);
+      localStorage.setItem("accountEmail", formData.email);
+      if (localStorage.getItem("accountEmail")) {
+        router.push("/dashboard");
+      }
     }
     getData();
   };
@@ -57,6 +75,7 @@ export default function Home() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -70,6 +89,7 @@ export default function Home() {
               name="userName"
               value={formData.userName}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -83,6 +103,7 @@ export default function Home() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -96,6 +117,7 @@ export default function Home() {
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
+              required
             />
           </div>
           <br />

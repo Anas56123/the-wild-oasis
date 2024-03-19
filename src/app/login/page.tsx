@@ -1,5 +1,6 @@
 "use client";
 import { getAccountByEmail } from "@/Data/GET/getAccountByEmail";
+import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 
 type FormData = {
@@ -13,6 +14,7 @@ export default function Home() {
     password: "",
   });
   const [data, setData] = useState([]);
+  const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
@@ -21,6 +23,10 @@ export default function Home() {
       const fd: any = await getAccountByEmail(formData.email);
       setData(fd);
       console.log("Data: ", data);
+      localStorage.setItem("accountEmail", formData.email);
+      if (localStorage.getItem("accountEmail")) {
+        router.push("/dashboard");
+      }
     }
     getData();
   };
@@ -48,6 +54,7 @@ export default function Home() {
               name="email"
               value={formData.email}
               onChange={handleChange}
+              required
             />
           </div>
           <br />
@@ -61,6 +68,7 @@ export default function Home() {
               name="password"
               value={formData.password}
               onChange={handleChange}
+              required
             />
           </div>
           <br />

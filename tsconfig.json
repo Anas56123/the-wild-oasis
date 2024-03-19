@@ -18,9 +18,19 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@icons/*": ["./public/Icons/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/login/page.tsx", "src/Data/Supabase/Supabase.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/login/page.tsx",
+    "src/Data/Supabase/Supabase.js",
+    "src/Components/DonutBar.tsx",
+    "src/Components/Graph.tsx"
+  ],
   "exclude": ["node_modules"]
 }
