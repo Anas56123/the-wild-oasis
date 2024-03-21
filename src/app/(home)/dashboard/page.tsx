@@ -68,7 +68,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">BOOKINGS</p>
-              <span className="font-bold text-slate-50 text-2xl">Num</span>
+              <span className="font-bold text-slate-50 text-2xl">Number</span>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-slate-800 py-2 px-2 w-72 rounded-lg border border-slate-700 h-28">
@@ -77,7 +77,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">SALES</p>
-              <span className="font-bold text-slate-50 text-2xl">Num</span>
+              <span className="font-bold text-slate-50 text-2xl">Number</span>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-slate-800 py-2 px-2 w-72 rounded-lg border border-slate-700 h-28">
@@ -86,7 +86,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">CHECK INS</p>
-              <span className="font-bold text-slate-50 text-2xl">Num</span>
+              <span className="font-bold text-slate-50 text-2xl">Number</span>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-slate-800 py-2 px-2 w-72 rounded-lg border border-slate-700 h-28">
@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">OCCUPANCY RATE</p>
-              <span className="font-bold text-slate-50 text-2xl">Num</span>
+              <span className="font-bold text-slate-50 text-2xl">Number</span>
             </div>
           </div>
           <div className="col-span-2 row-span-3"></div>
