@@ -1,5 +1,5 @@
 "use client";
-import { getAccountByEmail } from "@/Data/GET/getAccountByEmail";
+import { getAccountByEmail } from "@/Data/GET/Accounts/getAccountByEmail";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 

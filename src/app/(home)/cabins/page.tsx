@@ -1,12 +1,22 @@
 "use client";
+import { getCabins } from "@/Data/GET/Cabins/getCabins";
 import ClientOnly from "@/utils/ClientOnly";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type BtnBg = "" | "btn-1" | "btn-2" | "btn-3";
 
 export default function Home() {
   const [bg, setBg] = useState<BtnBg>("");
   const [bgClick, setBgClick] = useState<BtnBg>("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const fd: any = await getCabins();
+      setData(fd);
+    }
+    getData();
+  }, []);
 
   function handleClick(state: BtnBg) {
     setBgClick(state);
@@ -57,6 +67,13 @@ export default function Home() {
               Without discount
             </button>
           </div>
+        </div>
+        <div>
+          {data?.map((cabin, index) => (
+            <div className="dark:text-slate-50 bg-slate-700" key={index}>
+              {JSON.stringify(cabin)}
+            </div>
+          ))}
         </div>
       </div>
     </ClientOnly>

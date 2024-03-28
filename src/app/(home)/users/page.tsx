@@ -1,5 +1,5 @@
 "use client";
-import { insertAccount } from "@/Data/INSERT/insertAccount";
+import { insertAccount } from "@/Data/INSERT/Accounts/insertAccount";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
 
