@@ -1,7 +1,9 @@
 "use client"
 import { useRouter } from "next/navigation";
 
-export default function Home() {
-    const router = useRouter();
-    router.push('/login')
-}
+const Home = () => {
+  const route = useRouter();
+  route.push('/login')
+};
+
+export default Home;

@@ -1,13 +1,13 @@
-import supabase from "@/Data/Supabase/Supabase";
+import supabase from "../Supabase/Supabase";
 
-export const getCabins = async () => {
+export const getBookings = async () => {
   let { data, error } = await supabase
-    .from("Cabins")
+    .from("Bookings")
     .select("*")
     .order("id", { ascending: true });
 
   if (error) {
-    console.error(error);
+    console.log(error);
   }
 
   return data;
