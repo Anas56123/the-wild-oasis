@@ -1,74 +1,83 @@
-"use client";
-import { getBookings } from "@/Data/GET/getBookings";
-import { useEffect, useState } from "react";
+interface TableProps {
+  data: {
+    id: string;
+    cabinID: number;
+    guestsID: number;
+    startDate: string;
+    endDate: string;
+    status: string;
+    totalPrice: number;
+  }[];
+}
 
-type BookingsData = {
-  id: number | null;
-  created_at: string | null;
-  startDate: string | null;
-  endDate: string | null;
-  cabinPrice: number | null;
-  extraPrice: number | null;
-  totalPrice: number | null;
-  status: string | null;
-  hadBreakfast: boolean | null;
-  hadPaid: boolean | null;
-  observation: string | null;
-  cabinID: number | null;
-  guestsID: number | null;
-};
+type statusForm = "unconfirmed" | "checked out" | "checked in" | "";
 
-const Table = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-      const fd: any = await getBookings();
-      setData(fd);
-      console.log("Data: ", data);
-    }
-    getData();
-  }, [])
+const Table: React.FC<TableProps> = ({ data }) => {
+  let statusBG: statusForm = "";
 
   return (
-    <div>
-      <table className="border border-solid border-slate-900 dark:border-slate-50">
+    <table className="min-w-5/6 border rounded-lg divide-y divide-slate-200 dark:divide-slate-700 border-slate-200 dark:border-slate-700">
+      <thead className="bg-slate-50 dark:bg-slate-900">
         <tr>
-          <th className="border-y border-solid border-slate-900 dark:border-slate-50">
-            CABIN
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tl rounded-tr"
+          >
+            Cabins
           </th>
-          <th className="border-y border-solid border-slate-900 dark:border-slate-50">
-            GEUST
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
+          >
+            Guests
           </th>
-          <th className="border-y border-solid border-slate-900 dark:border-slate-50">
-            DATES
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
+          >
+            Dates
           </th>
-          <th className="border-y border-solid border-slate-900 dark:border-slate-50">
-            STATUS
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
+          >
+            Status
           </th>
-          <th className="border-y border-solid border-slate-900 dark:border-slate-50">
-            AMOUNT
+          <th
+            scope="col"
+            className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tr"
+          >
+            Amount
           </th>
         </tr>
-        {data?.map((booking: BookingsData, index) => <tr key={index}>
-            <td className="border border-solid border-slate-900 dark:border-slate-50">
-                {booking.cabinID}
-            </td>
-            <td className="border border-solid border-slate-900 dark:border-slate-50">
-                {booking.guestsID}
-            </td>
-            <td className="border border-solid border-slate-900 dark:border-slate-50">
-                {JSON.stringify(booking.startDate)} to {JSON.stringify(booking.endDate)}
-            </td>
-            <td className="border border-solid border-slate-900 dark:border-slate-50">
-                {booking.status}
-            </td>
-            <td className="border border-solid border-slate-900 dark:border-slate-50">
-                {booking.totalPrice}
-            </td>
-        </tr>)}
-      </table>
-    </div>
+      </thead>
+      <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+        {data?.map((item) => {
+          item.status == "unconfirmed"
+            ? (statusBG = "unconfirmed")
+            : item.status == "checked in"
+              ? statusBG == "checked in"
+              : item.status == "checked out"
+                ? statusBG == "checked out"
+                : '';
+          return (
+            <tr key={item.id}>
+              <td className="px-6 py-6 whitespace-nowrap rounded-bl">
+                {item.cabinID}
+              </td>
+              <td className="px-6 py-46whitespace-nowrap">{item.guestsID}</td>
+              <td className="px-6 py-6 whitespace-nowrap">
+                {item.startDate} to {item.endDate}
+              </td>
+              <td className="px-6 py-6 whitespace-nowrap">{item.status}</td>
+              <td className="px-6 py-6 whitespace-nowrap rounded-br">
+                {item.totalPrice}
+              </td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
   );
 };
 
