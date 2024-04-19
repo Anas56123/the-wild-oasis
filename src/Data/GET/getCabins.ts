@@ -1,8 +1,8 @@
 import supabase from "../Supabase/Supabase";
 
-export const getBookings = async () => {
+export const getCabins = async () => {
   let { data, error } = await supabase
-    .from("Bookings")
+    .from("Cabins")
     .select("*")
     .order("id", { ascending: true });
 

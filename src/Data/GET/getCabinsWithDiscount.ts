@@ -1,10 +1,11 @@
 import supabase from "../Supabase/Supabase";
 
-export const getBookings = async () => {
+export const getCabinsWithDiscount = async () => {
   let { data, error } = await supabase
-    .from("Bookings")
+    .from("Cabins")
     .select("*")
-    .order("id", { ascending: true });
+    .order("id", { ascending: true })
+    .is("discount", null);
 
   if (error) {
     console.error(error);
