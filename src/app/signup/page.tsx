@@ -60,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center dark:text-slate-50">
       <div className="h-5/6 w-2/6 rounded-xl flex justify-center items-center flex-col bg-slate-50 dark:bg-slate-900 px-20">
         <h1 className="text-4xl font-bold dark:text-slate-50">Sign up</h1>
         <br />

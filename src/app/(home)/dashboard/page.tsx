@@ -112,7 +112,7 @@ export default function Home() {
           <div className="col-span-2 row-span-3">
             <Table data={data} />
           </div>
-          <div className="col-span-2 row-span-3">
+          <div className="col-span-2 row-span-3 w-full flex justify-center items-center">
             <DonutBar />
           </div>
           <div className="col-span-4 row-span-3 px-3 py-3 border rounded-lg dark:bg-slate-800 dark:border-slate-700">

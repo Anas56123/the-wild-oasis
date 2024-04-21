@@ -63,7 +63,7 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex w-full h-screen items-start flex-col mx-3">
+      <div className="flex w-full h-screen items-start flex-col mx-3 dark:text-slate-50">
         <br />
         <h1 className="text-4xl font-bold">Create a new user</h1>
         <br />

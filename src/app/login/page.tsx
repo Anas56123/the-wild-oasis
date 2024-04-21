@@ -39,7 +39,7 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex justify-center items-center dark:text-slate-50">
       <div className="h-3/6 w-96 rounded-xl flex justify-center items-center flex-col bg-slate-50 dark:bg-slate-900">
         <h1 className="text-4xl font-bold dark:text-slate-50">Log In</h1>
         <br />

@@ -47,7 +47,7 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col items-center font-bold">
+      <div className="flex flex-col items-center font-bold dark:text-slate-50">
         <br />
         <div className="w-5/6 flex justify-between items-center">
           <h1 className="text-4xl">All cabins</h1>

@@ -13,3 +13,39 @@
 .grid-rows-me-7 {
   grid-template-rows: repeat(7, minmax(0, 7rem));
 }
+
+.sal {
+  grid-template-columns: 26rem 1fr;
+  grid-template-rows: auto 1fr;
+}
+
+.main {
+  padding: 4rem 4.8rem 6.4rem;
+}
+
+.max-w-8xl {
+  max-width: 120rem;
+}
+
+.container {
+  gap: 3.2rem;
+}
+
+@media (min-width: 640px) {
+  .sizesButton {
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .sizesButton {
+    padding: 1.2rem 1.6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sizesButton {
+    font-size: 1.6rem;
+    padding: 1.2rem 2.4rem;
+  }
+}
