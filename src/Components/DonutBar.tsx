@@ -76,7 +76,7 @@ export const data = {
   datasets: [
     {
       label: "# of Votes",
-      cutout: 120,
+      cutout: 100,
       spacing: 20,
       data: [2, 3, 1, 1],
       backgroundColor: [

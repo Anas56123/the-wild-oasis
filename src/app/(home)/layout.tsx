@@ -1,8 +1,8 @@
 "use client";
 import { ReactNode, useState } from "react";
-import Image from "../../../node_modules/next/image";
 import Link from "../../../node_modules/next/link";
 import Logo from "../../../public/logo-dark.png";
+import Image from "next/image";
 
 type LinkBg = "" | "link-1" | "link-2" | "link-3" | "link-4" | "link-5";
 

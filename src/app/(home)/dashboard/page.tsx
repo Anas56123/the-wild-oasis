@@ -35,8 +35,8 @@ export default function Home() {
 
   return (
     <ClientOnly>
-      <div>
-        <div className="flex justify-between items-center w-full">
+      <div className="flex flex-col items-center">
+        <div className="flex justify-between items-center w-with-grid-me">
           <h1 className="text-4xl font-bold dark:text-slate-50">Dashboard</h1>
           <div className="border-slate-800 border-2 bg-wihte rounded flex justify-between px-1 dark:bg-slate-900">
             <button
@@ -72,7 +72,7 @@ export default function Home() {
           </div>
         </div>
         <br />
-        <div className="grid grid-cols-me-4 grid-rows-me-7 gap-7">
+        <div className="grid grid-cols-me-4 grid-rows-me-7 gap-10">
           <div className="flex items-center gap-4 bg-slate-800 py-2 px-2 w-72 rounded-lg border border-slate-700 h-28">
             <div className="rounded-full bg-sky-600 h-20 w-20 flex justify-center items-center">
               {/* <Image alt="briefcase" width="50" height="50" src={briefcase} /> */}
@@ -112,8 +112,13 @@ export default function Home() {
           <div className="col-span-2 row-span-3">
             <Table data={data} />
           </div>
-          <div className="col-span-2 row-span-3 w-full flex justify-center items-center">
-            <DonutBar />
+          <div className="col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-slate-800 border rounded-lg dark:border-slate-700 border-slate-200">
+            <h2 className="dark:text-slate-50 font-semibold text-3xl">Stay duration summary</h2>
+            <br />
+            <div>
+              <DonutBar />
+            </div>
+            
           </div>
           <div className="col-span-4 row-span-3 px-3 py-3 border rounded-lg dark:bg-slate-800 dark:border-slate-700">
             <Graph />

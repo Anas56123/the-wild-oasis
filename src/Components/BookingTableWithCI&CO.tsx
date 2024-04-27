@@ -20,41 +20,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   return (
     <>
-      <table className="w-5/6 border rounded-lg divide-y divide-slate-200 dark:divide-slate-700 border-slate-200 dark:border-slate-700 dark:text-slate-50">
-        <thead className="bg-slate-50 dark:bg-slate-900">
-          <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tl rounded-tr"
-            >
-              Cabins
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Guests
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Dates
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Status
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tr"
-            >
-              Amount
-            </th>
-          </tr>
-        </thead>
+      <table className="w-full border rounded-lg divide-y divide-slate-200 dark:divide-slate-700 border-slate-200 dark:border-slate-700 dark:text-slate-50">
         <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
           {data?.map((item) => {
             item.status == "unconfirmed"
