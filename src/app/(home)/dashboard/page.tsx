@@ -19,7 +19,7 @@ export default function Home() {
       setData(fd);
     }
     getData();
-  }, [])
+  }, []);
 
   function handleClick(state: BtnBg) {
     setBgClick(state);
@@ -38,7 +38,7 @@ export default function Home() {
       <div className="flex flex-col items-center">
         <div className="flex justify-between items-center w-with-grid-me">
           <h1 className="text-4xl font-bold dark:text-slate-50">Dashboard</h1>
-          <div className="border-slate-800 border-2 bg-wihte rounded flex justify-between px-1 dark:bg-slate-900">
+          <div className="border-slate-800 border-2 bg-wihte rounded flex justify-between px-1 dark:bg-slate-800">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}
@@ -109,16 +109,22 @@ export default function Home() {
               <span className="font-bold text-slate-50 text-2xl">Number</span>
             </div>
           </div>
-          <div className="col-span-2 row-span-3">
-            <Table data={data} />
+          <div className="col-span-2 row-span-3 border rounded-lg flex flex-col items-center dark:bg-slate-800 dark:border-slate-700">
+            <div className="w-11/12 mb-32">
+              <h1 className="dark:text-slate-50 text-3xl font-bold">Today</h1>
+            </div>
+            <div className="w-full">
+              <Table data={data} />
+            </div>
           </div>
           <div className="col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-slate-800 border rounded-lg dark:border-slate-700 border-slate-200">
-            <h2 className="dark:text-slate-50 font-semibold text-3xl">Stay duration summary</h2>
+            <h2 className="dark:text-slate-50 font-semibold text-3xl">
+              Stay duration summary
+            </h2>
             <br />
             <div>
               <DonutBar />
             </div>
-            
           </div>
           <div className="col-span-4 row-span-3 px-3 py-3 border rounded-lg dark:bg-slate-800 dark:border-slate-700">
             <Graph />
