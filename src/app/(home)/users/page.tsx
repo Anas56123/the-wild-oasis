@@ -63,13 +63,13 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex w-full h-screen items-start flex-col mx-3 dark:text-slate-50">
+      <div className="flex w-full h-screen items-start flex-col dark:text-slate-50">
         <br />
-        <h1 className="text-4xl font-bold">Create a new user</h1>
+        <h1 className="text-4xl ml-5 font-bold">Create a new user</h1>
         <br />
         <form
           onSubmit={handleSubmit}
-          className="w-2/3 bg-slate-800 px-10 py-10 rounded-md"
+          className="w-2/3 ml-5 bg-slate-800 px-10 py-10 rounded-md"
         >
           <div className="flex justify-between w-full">
             <label className="font-bold text-lg dark:text-sl">Email:</label>

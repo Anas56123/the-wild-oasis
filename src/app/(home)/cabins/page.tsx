@@ -51,7 +51,7 @@ const Home = () => {
         <br />
         <div className="w-5/6 flex justify-between items-center">
           <h1 className="text-4xl">All cabins</h1>
-          <div className="border-slate-800 border-2 bg-wihte w-80 rounded flex justify-between px-1 dark:bg-slate-900">
+          <div className="border-slate-800 border-2 bg-wihte w-80 rounded flex justify-between px-1 dark:bg-slate-800">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}

@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.w-less-than-a-screen-me {
-  width: 150vh;
-}
-
-.w-with-grid-me {
-  width: 88%;
-}
-
 .grid-cols-me-4 {
   grid-template-columns: repeat(4, minmax(0, 18rem));
 }
