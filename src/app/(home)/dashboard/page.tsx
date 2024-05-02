@@ -5,11 +5,13 @@ import Graph from "@/Components/Graph";
 import Table from "@/Components/BookingTableWithCI&CO";
 import { getBookings } from "@/Data/GET/getBookings";
 import ClientOnly from "@/utils/ClientOnly";
+import { getBookingsCI } from "@/Data/GET/getBookingsCI";
 
 type BtnBg = "" | "btn-1" | "btn-2" | "btn-3";
 
 export default function Home() {
   const [data, setData] = useState([]);
+  const [dataCI, setDataCI] = useState([]);
   const [bg, setBg] = useState<BtnBg>("");
   const [bgClick, setBgClick] = useState<BtnBg>("");
 
@@ -17,6 +19,10 @@ export default function Home() {
     (async function () {
       const fd: any = await getBookings();
       setData(fd);
+    })();
+    (async function () {
+      const fd: any = await getBookingsCI();
+      setDataCI(fd);
     })();
   }, []);
 
@@ -92,7 +98,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">BOOKINGS</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">4</span>
+              <span className="font-bold dark:text-slate-50 text-2xl">{data.length}</span>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
@@ -138,7 +144,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">CHECK INS</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">1</span>
+              <span className="font-bold dark:text-slate-50 text-2xl">{dataCI.length}</span>
             </div>
           </div>
           <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
@@ -160,7 +166,7 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-4">
               <p className="font-bold text-stone-400 text-xs">OCCUPANCY RATE</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">39%</span>
+              <span className="font-bold dark:text-slate-50 text-2xl">32%</span>
             </div>
           </div>
           <div className="col-span-2 row-span-3 border rounded-lg flex flex-col items-center dark:bg-slate-800 bg-slate-50 dark:border-slate-700">
