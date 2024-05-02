@@ -69,12 +69,12 @@ const Home = () => {
         <br />
         <form
           onSubmit={handleSubmit}
-          className="w-2/3 ml-5 bg-slate-800 px-10 py-10 rounded-md"
+          className="w-2/3 ml-5 bg-slate-50 dark:bg-slate-800 px-10 py-10 rounded-md"
         >
           <div className="flex justify-between w-full">
             <label className="font-bold text-lg dark:text-sl">Email:</label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="email"
               name="email"
               value={formData.email}
@@ -88,7 +88,7 @@ const Home = () => {
           <div className="flex justify-between w-full">
             <label className="font-bold text-lg dark:text-sl">User name:</label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="text"
               name="userName"
               value={formData.userName}
@@ -102,7 +102,7 @@ const Home = () => {
           <div className="flex justify-between w-full">
             <label className="font-bold text-lg dark:text-sl">Password:</label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="password"
               name="password"
               value={formData.password}
@@ -118,7 +118,7 @@ const Home = () => {
               Phone number:
             </label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
@@ -131,7 +131,7 @@ const Home = () => {
           <br />
           <div className="flex justify-end w-full">
             <button
-              className="dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600"
+              className="dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border border-slate-100 dark:border-slate-600"
               type="submit"
             >
               Submit

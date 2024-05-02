@@ -70,7 +70,7 @@ export default function Home() {
               Email:
             </label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="email"
               name="email"
               value={formData.email}
@@ -84,7 +84,7 @@ export default function Home() {
               User name:
             </label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="text"
               name="userName"
               value={formData.userName}
@@ -98,7 +98,7 @@ export default function Home() {
               Password:
             </label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="password"
               name="password"
               value={formData.password}
@@ -112,7 +112,7 @@ export default function Home() {
               Phone number:
             </label>
             <input
-              className="rounded dark:text-slate-50 border-2 w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
@@ -122,7 +122,7 @@ export default function Home() {
           </div>
           <br />
           <button
-            className="dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border-2 border-slate-100 dark:border-slate-600"
+            className="dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border border-slate-100 dark:border-slate-600"
             type="submit"
           >
             Submit

@@ -21,7 +21,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
   return (
     <>
       <table className="w-11/12 rounded-lg divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-50">
-        <tbody className="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+        <tbody className="bg-slate-50 dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
           {data?.map((item) => {
             item.status == "unconfirmed"
               ? (statusBG = "unconfirmed")

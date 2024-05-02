@@ -64,9 +64,14 @@ const Table: React.FC<TableProps> = ({ data }) => {
                 : item.status == "checked out"
                   ? statusBG == "checked out"
                   : "";
-                  let endDateSplit = item.endDate.split("");
-                  let endDate = Number(endDateSplit[5] + endDateSplit[6])
-                  let howMuchAgo = endDate - date < 0 ? String(endDate - date + 12) + ' month ago' : endDate - date == 0 ? "now" : endDate - date + ' month ago'
+            let endDateSplit = item.endDate.split("");
+            let endDate = Number(endDateSplit[5] + endDateSplit[6]);
+            let howMuchAgo =
+              endDate - date < 0
+                ? String(endDate - date + 12) + " month ago"
+                : endDate - date == 0
+                  ? "now"
+                  : endDate - date + " month ago";
             return (
               <tr key={item.id}>
                 <td className="px-6 py-6 whitespace-nowrap rounded-bl">
@@ -75,9 +80,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
                 <td className="px-6 py-46 whitespace-nowrap">
                   {item.guestsID}
                 </td>
-                <td className="px-6 py-6 whitespace-nowrap">
-                   {howMuchAgo}
-                </td>
+                <td className="px-6 py-6 whitespace-nowrap">{howMuchAgo}</td>
                 <td className={`px-6 py-6 whitespace-nowrap`}>
                   <mark
                     className={`text-slate-50 text-normal px-1 rounded-full ${

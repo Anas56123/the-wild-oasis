@@ -55,11 +55,11 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col items-center font-bold dark:text-slate-50">
+      <div className="flex flex-col items-center dark:text-slate-50">
         <br />
         <div className="w-5/6 flex justify-between items-center">
-          <h1 className="text-4xl">All bookings</h1>
-          <div className="border-slate-800 border-2 bg-wihte w-96 rounded flex justify-between px-1 dark:bg-slate-800">
+          <h1 className="text-4xl font-bold">All bookings</h1>
+          <div className="border-slate-50 dark:border-slate-800 border bg-wihte w-96 rounded flex justify-between px-1 bg-slate-50 dark:bg-slate-800">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}

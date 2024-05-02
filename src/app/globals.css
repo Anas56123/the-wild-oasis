@@ -9,3 +9,7 @@
 .grid-rows-me-7 {
   grid-template-rows: repeat(7, minmax(0, 7rem));
 }
+
+.h-less-screen-me{
+  height: 95.8vh;
+}

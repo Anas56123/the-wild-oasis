@@ -75,7 +75,9 @@ const Table: React.FC<TableProps> = ({ data }) => {
                 <td className={`px-6 py-6 whitespace-nowrap`}>
                   {item.regularPrice}
                 </td>
-                <td className="px-6 py-6 whitespace-nowrap">
+                <td
+                  className={`px-6 py-6 whitespace-nowrap ${item.discount == null ? "" : "text-green-200"}`}
+                >
                   {item.discount == null ? "-" : item.discount}
                 </td>
                 <td className="px-6 py-6 whitespace-nowrap rounded-br">

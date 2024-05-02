@@ -1,19 +1,76 @@
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Link from "../../../node_modules/next/link";
 import Logo from "../../../public/logo-dark.png";
 import Image from "next/image";
+import { getAccountByEmail } from "@/Data/GET/getAccountsByEmail";
+import { useRouter } from "next/navigation";
 
 type LinkBg = "" | "link-1" | "link-2" | "link-3" | "link-4" | "link-5";
+type FetchedData =
+  | [
+      {
+        email: string;
+        password: string;
+        userName: string;
+        phoneNumber: string;
+        avatar: string;
+      },
+    ]
+  | [];
 
 export default function HomeLayout({ children }: { children: ReactNode }) {
+  console.log(localStorage.getItem("darkMode"));
+  const router = useRouter();
+  const [data, setData] = useState<FetchedData>([]);
+  const [darkMode, setDarkMode] = useState(
+    Boolean(localStorage.getItem("darkMode"))
+  );
   const [mouseEnter, setMouseEnter] = useState<LinkBg>("");
   const [mouseClick, setMouseClick] = useState<LinkBg>("");
 
+  useEffect(() => {
+    if (window.location.href === "http://localhost:3000/dashboard") {
+      setMouseClick("link-1");
+    } else if (window.location.href === "http://localhost:3000/bookings") {
+      setMouseClick("link-2");
+    } else if (window.location.href === "http://localhost:3000/cabins") {
+      setMouseClick("link-3");
+    } else if (window.location.href === "http://localhost:3000/users") {
+      setMouseClick("link-4");
+    } else if (window.location.href === "http://localhost:3000/settings") {
+      setMouseClick("link-5");
+    }
+    async function getData() {
+      const fd: any = await getAccountByEmail(
+        String(localStorage.getItem("accountEmail"))
+      );
+      setData(fd);
+      console.log(data);
+    }
+    getData();
+    const storedTheme = localStorage.getItem("color-theme");
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    setDarkMode(storedTheme === "dark" || (!storedTheme && prefersDarkMode));
+  }, []);
+
+  const toggleTheme = () => {
+    setDarkMode((prevTheme) => {
+      const newTheme = !prevTheme ? "dark" : "light";
+      document.documentElement.classList.toggle("dark", newTheme === "dark");
+      localStorage.setItem("color-theme", newTheme);
+      return !prevTheme;
+    });
+  };
+
   return (
     <>
-      <div className="bg-slate-100 dark:bg-slate-900 flex">
-        <aside className="dark:text-slate-50 dark:bg-slate-800 bg-slate-200 px-4 flex w-72 flex-col items-center h-screen">
+      <div
+        className={`bg-slate-100 dark:bg-slate-900 flex ${darkMode ? "dark" : ""}`}
+      >
+        <aside className="dark:text-slate-50 border dark:border-slate-700 dark:bg-slate-800 bg-slate-50 px-4 flex w-72 flex-col items-center h-screen">
           <Image height="175" width="175" src={Logo} alt="Logo" />
           <br />
           <div className="flex flex-col gap-4">
@@ -29,7 +86,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 setMouseClick("link-1");
               }}
               className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
-                (mouseClick || mouseEnter) == "link-1" ? "bg-slate-100 dark:bg-slate-900" : ""
+                (mouseClick || mouseEnter) == "link-1"
+                  ? "bg-slate-100 dark:bg-slate-900"
+                  : ""
               }`}
             >
               <svg
@@ -61,7 +120,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 setMouseClick("link-2");
               }}
               className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
-                (mouseClick || mouseEnter) == "link-2" ? "bg-slate-100 dark:bg-slate-900" : ""
+                (mouseClick || mouseEnter) == "link-2"
+                  ? "bg-slate-100 dark:bg-slate-900"
+                  : ""
               }`}
             >
               <svg
@@ -93,7 +154,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 setMouseClick("link-3");
               }}
               className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
-                (mouseClick || mouseEnter) == "link-3" ? "bg-slate-100 dark:bg-slate-900" : ""
+                (mouseClick || mouseEnter) == "link-3"
+                  ? "bg-slate-100 dark:bg-slate-900"
+                  : ""
               }`}
             >
               <svg
@@ -125,7 +188,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 setMouseClick("link-4");
               }}
               className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
-                (mouseClick || mouseEnter) == "link-4" ? "bg-slate-100 dark:bg-slate-900" : ""
+                (mouseClick || mouseEnter) == "link-4"
+                  ? "bg-slate-100 dark:bg-slate-900"
+                  : ""
               }`}
             >
               <svg
@@ -156,7 +221,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 setMouseClick("link-5");
               }}
               className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
-                (mouseClick || mouseEnter) == "link-5" ? "bg-slate-100 dark:bg-slate-900" : ""
+                (mouseClick || mouseEnter) == "link-5"
+                  ? "bg-slate-100 dark:bg-slate-900"
+                  : ""
               }`}
             >
               <svg
@@ -183,8 +250,81 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
             </Link>
           </div>
         </aside>
-        <div className="w-screen h-screen scroll-smooth overflow-auto">
-          {children}
+        <div className="w-screen">
+          <header className="dark:bg-slate-800 bg-slate-50 border dark:border-slate-700 h-10 w-full flex justify-end items-center px-5">
+            <div className="dark:text-slate-50 flex flex-row-reverse gap-4 items-center">
+              <button
+                onClick={() => {
+                  localStorage.removeItem("accountEmail");
+                  router.push("/");
+                }}
+                className="rotate-180"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6 text-indigo-500"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+                  />
+                </svg>
+              </button>
+              <button onClick={toggleTheme}>
+                {darkMode ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-indigo-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6 text-indigo-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    />
+                  </svg>
+                )}
+              </button>
+              <div className="flex gap-4 items-center flex-row-reverse">
+                <p className="font-bold dark:text-slate-50 text-stone-400 text-xs">
+                  {data[0]?.userName}
+                </p>
+                <Image
+                  height="30"
+                  width="30"
+                  className="rounded-full"
+                  src={data[0]?.avatar}
+                  alt="Logo"
+                />
+              </div>
+            </div>
+          </header>
+          <div className="h-less-screen-me scroll-smooth overflow-auto">
+            {children}
+          </div>
         </div>
       </div>
     </>
