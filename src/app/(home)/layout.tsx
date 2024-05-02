@@ -1,7 +1,9 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
 import Link from "../../../node_modules/next/link";
-import Logo from "../../../public/logo-dark.png";
+import LogoN from "../../../public/logo-dark.png";
+import LogoL from "../../../public/logo-light.png";
+import UD from "../../../public/default-user.jpg";
 import Image from "next/image";
 import { getAccountByEmail } from "@/Data/GET/getAccountsByEmail";
 import { useRouter } from "next/navigation";
@@ -71,7 +73,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
         className={`bg-slate-100 dark:bg-slate-900 flex ${darkMode ? "dark" : ""}`}
       >
         <aside className="dark:text-slate-50 border dark:border-slate-700 dark:bg-slate-800 bg-slate-50 px-4 flex w-72 flex-col items-center h-screen">
-          <Image height="175" width="175" src={Logo} alt="Logo" />
+          <Image height="175" width="175" src={darkMode ? LogoN : LogoL} alt="Logo" />
           <br />
           <div className="flex flex-col gap-4">
             <Link
@@ -105,7 +107,6 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 />
               </svg>
-
               <p className="text-xl font-bold">Home</p>
             </Link>
             <Link
@@ -139,7 +140,6 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
                 />
               </svg>
-
               <p className="text-xl font-bold">Bookings</p>
             </Link>
             <Link
@@ -316,7 +316,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   height="30"
                   width="30"
                   className="rounded-full"
-                  src={data[0]?.avatar}
+                  src={data[0]?.avatar ? data[0].avatar : UD}
                   alt="Logo"
                 />
               </div>
