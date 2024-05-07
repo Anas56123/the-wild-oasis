@@ -3,7 +3,6 @@ import LoadingSpinner from "./LoadingSpinner";
 interface TableProps {
   data: {
     id: string;
-    cabinID: number;
     guestsID: number;
     startDate: string;
     endDate: string;
@@ -20,8 +19,8 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   return (
     <>
-      <table className="transition-colors duration-1000 w-11/12 rounded-lg divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-50">
-        <tbody className="transition-colors duration-1000 bg-slate-50 dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+      <table className="transition-colors duration-500 w-11/12 rounded-lg divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-50">
+        <tbody className="transition-colors duration-500 bg-slate-50 dark:bg-[#18212f] divide-y divide-slate-200 dark:divide-slate-700">
           {data?.map((item) => {
             item.status == "unconfirmed"
               ? (statusBG = "unconfirmed")
@@ -40,33 +39,30 @@ const Table: React.FC<TableProps> = ({ data }) => {
                   : endDate - date + " month ago";
             return (
               <tr key={item.id}>
-                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap rounded-bl">
-                  {item.cabinID}
-                </td>
-                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap">
+                <td className="transition-colors duration-500 px-6 py-1 whitespace-nowrap">
                   {item.guestsID}
                 </td>
-                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap">
+                <td className="transition-colors duration-500 px-6 py-1 whitespace-nowrap">
                   {howMuchAgo}
                 </td>
                 <td
-                  className={`transition-colors duration-1000 px-6 py-2 whitespace-nowrap`}
+                  className={`transition-colors duration-500 px-6 py-2 whitespace-nowrap`}
                 >
                   <mark
-                    className={`transition-colors duration-1000 text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
+                    className={`transition-colors duration-500  dark:text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
                       item.status == "unconfirmed"
-                        ? "bg-sky-800"
+                        ? "dark:bg-sky-800 bg-sky-100 text-sky-800"
                         : item.status == "check in"
-                          ? "bg-green-700"
+                          ? "dark:bg-green-700 bg-green-100 text-green-700"
                           : item.status == "check out"
-                            ? "bg-gray-500"
+                            ? "dark:bg-gray-500 bg-gray-100 text-gray-500"
                             : ""
                     }`}
                   >
                     {item.status.toUpperCase()}
                   </mark>
                 </td>
-                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap rounded-br">
+                <td className="transition-colors duration-500 px-6 py-1 whitespace-nowrap rounded-br">
                   {item.totalPrice}
                 </td>
               </tr>
@@ -75,7 +71,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
         </tbody>
       </table>
       <br />
-      <div className="transition-colors duration-1000 flex w-full justify-center items-center">
+      <div className="transition-colors duration-500 flex w-full justify-center items-center">
         {data ? "" : <LoadingSpinner />}
       </div>
     </>

@@ -41,21 +41,21 @@ export default function Home() {
   };
 
   return (
-    <div className="transition-colors duration-1000 h-screen flex flex-col justify-center items-center dark:text-gray-50">
+    <div className="transition-colors duration-500 h-screen flex flex-col justify-center items-center dark:text-gray-50">
       <Image alt="Logo" src={Logo} width={180} />
       <br />
-      <h1 className="transition-colors duration-1000 text-4xl font-bold dark:text-gray-50">
+      <h1 className="transition-colors duration-500 text-4xl font-bold dark:text-gray-50">
         Log in to your account
       </h1>
       <br />
-      <div className="transition-colors duration-1000 h-2/6 w-1/4 rounded-xl flex justify-center items-center flex-col bg-white dark:bg-gray-900">
+      <div className="transition-colors duration-500 h-2/6 w-1/4 rounded-xl flex justify-center items-center flex-col bg-white dark:bg-gray-900">
         <form onSubmit={handleSubmit}>
-          <div className="transition-colors duration-1000 flex justify-center flex-col w-full">
-            <label className="transition-colors duration-1000  text-lg dark:text-gray-50">
+          <div className="transition-colors duration-500 flex justify-center flex-col w-full">
+            <label className="transition-colors duration-500  text-lg dark:text-gray-50">
               Email address:
             </label>
             <input
-              className="transition-colors duration-1000 rounded dark:text-gray-50 border w-96 h-10 border-gray-400 dark:border-gray-600 dark:bg-gray-800"
+              className="transition-colors duration-500 rounded dark:text-gray-50 border w-96 h-10 border-gray-400 dark:border-gray-600 dark:bg-gray-800"
               type="email"
               name="email"
               value={formData.email}
@@ -64,12 +64,12 @@ export default function Home() {
             />
           </div>
           <br />
-          <div className="transition-colors duration-1000 flex justify-center flex-col">
-            <label className="transition-colors duration-1000  text-lg dark:text-gray-50">
+          <div className="transition-colors duration-500 flex justify-center flex-col">
+            <label className="transition-colors duration-500  text-lg dark:text-gray-50">
               Password:
             </label>
             <input
-              className="transition-colors duration-1000 rounded dark:text-gray-50 border w-96 h-10 border-gray-400 dark:border-gray-600 dark:bg-gray-800"
+              className="transition-colors duration-500 rounded dark:text-gray-50 border w-96 h-10 border-gray-400 dark:border-gray-600 dark:bg-gray-800"
               type="password"
               name="password"
               value={formData.password}
@@ -79,7 +79,7 @@ export default function Home() {
           </div>
           <br />
           <button
-            className="transition-colors duration-1000 text-gray-50 px-3 rounded w-96 h-10 bg-indigo-500 border border-gray-100 dark:border-gray-600"
+            className="transition-colors duration-500 text-gray-50 px-3 rounded w-96 h-10 bg-indigo-500 border border-gray-100 dark:border-gray-600"
             type="submit"
           >
             Log in

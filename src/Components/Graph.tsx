@@ -56,7 +56,7 @@
 
 // const Graph = () => {
 //   return (
-//     <div className="transition-colors duration-1000 col-span-4 row-span-3">
+//     <div className="transition-colors duration-500 col-span-4 row-span-3">
 //       <div style={{ width: 600, height: 300 }}>
 //         <Line options={options} data={data} />
 //       </div>

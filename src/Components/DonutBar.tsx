@@ -51,7 +51,7 @@
 //   });
 
 //   return (
-//     <div className="transition-colors duration-1000 w-full h-full max-w-[500px] max-h-[500px] dark:border-slate-800">
+//     <div className="transition-colors duration-500 w-full h-full max-w-[500px] max-h-[500px] dark:border-slate-800">
 //       <div id="chart">
 //         <ReactApexChart
 //           options={state.options}
