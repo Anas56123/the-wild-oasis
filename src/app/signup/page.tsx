@@ -60,17 +60,19 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center dark:text-slate-50">
-      <div className="h-5/6 w-2/6 rounded-xl flex justify-center items-center flex-col bg-slate-50 dark:bg-slate-900 px-20">
-        <h1 className="text-4xl font-bold dark:text-slate-50">Sign up</h1>
+    <div className="transition-colors duration-1000 h-screen flex justify-center items-center dark:text-slate-50">
+      <div className="transition-colors duration-1000 h-5/6 w-2/6 rounded-xl flex justify-center items-center flex-col bg-slate-50 dark:bg-slate-900 px-20">
+        <h1 className="transition-colors duration-1000 text-4xl font-bold dark:text-slate-50">
+          Sign up
+        </h1>
         <br />
         <form onSubmit={handleSubmit}>
-          <div className="flex justify-center flex-col">
-            <label className="font-bold text-lg dark:text-slate-50">
+          <div className="transition-colors duration-1000 flex justify-center flex-col">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-slate-50">
               Email:
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="email"
               name="email"
               value={formData.email}
@@ -79,12 +81,12 @@ export default function Home() {
             />
           </div>
           <br />
-          <div className="flex justify-center flex-col">
-            <label className="font-bold text-lg dark:text-slate-50">
+          <div className="transition-colors duration-1000 flex justify-center flex-col">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-slate-50">
               User name:
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="text"
               name="userName"
               value={formData.userName}
@@ -93,12 +95,12 @@ export default function Home() {
             />
           </div>
           <br />
-          <div className="flex justify-center flex-col">
-            <label className="font-bold text-lg dark:text-slate-50">
+          <div className="transition-colors duration-1000 flex justify-center flex-col">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-slate-50">
               Password:
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="password"
               name="password"
               value={formData.password}
@@ -107,12 +109,12 @@ export default function Home() {
             />
           </div>
           <br />
-          <div className="flex justify-center flex-col">
-            <label className="font-bold text-lg dark:text-slate-50">
+          <div className="transition-colors duration-1000 flex justify-center flex-col">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-slate-50">
               Phone number:
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-800"
               type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
@@ -122,14 +124,16 @@ export default function Home() {
           </div>
           <br />
           <button
-            className="dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border border-slate-100 dark:border-slate-600"
+            className="transition-colors duration-1000 dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-100 dark:bg-slate-700 border border-slate-100 dark:border-slate-600"
             type="submit"
           >
             Submit
           </button>
         </form>
         <br />
-        <p className="text-red-500 font-bold">{error}</p>
+        <p className="transition-colors duration-1000 text-red-500 font-bold">
+          {error}
+        </p>
       </div>
     </div>
   );

@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.body * {
+  @apply transition-colors duration-200;
+}
+
 .grid-cols-me-4 {
   grid-template-columns: repeat(4, minmax(0, 18rem));
 }
 
 .grid-rows-me-7 {
-  grid-template-rows: repeat(7, minmax(0, 7rem));
+  grid-template-rows: repeat(7, minmax(0, 6rem));
 }
 
 .h-less-screen-me{

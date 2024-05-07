@@ -70,12 +70,17 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <div
-        className={`bg-slate-100 dark:bg-slate-900 flex ${darkMode ? "dark" : ""}`}
+        className={`transition-colors duration-1000 bg-slate-100 dark:bg-slate-900 flex transition-colors duration-1000 ${darkMode ? "dark" : ""}`}
       >
-        <aside className="dark:text-slate-50 border dark:border-slate-700 dark:bg-slate-800 bg-slate-50 px-4 flex w-72 flex-col items-center h-screen">
-          <Image height="175" width="175" src={darkMode ? LogoN : LogoL} alt="Logo" />
+        <aside className="transition-colors duration-1000 dark:text-slate-50 border dark:border-slate-700 dark:bg-slate-800 bg-slate-50 px-4 flex w-72 flex-col items-center h-screen">
+          <Image
+            height="175"
+            width="175"
+            src={darkMode ? LogoN : LogoL}
+            alt="Logo"
+          />
           <br />
-          <div className="flex flex-col gap-4">
+          <div className="transition-colors duration-1000 flex flex-col gap-4">
             <Link
               href="/dashboard"
               onMouseEnter={() => {
@@ -87,7 +92,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-1");
               }}
-              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-1000 flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-1"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -99,7 +104,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className={`w-9 h-9 ${(mouseClick || mouseEnter) == "link-1" ? "text-indigo-500" : "text-slate-500"}`}
+                className={`transition-colors duration-1000 w-9 h-9 ${(mouseClick || mouseEnter) == "link-1" ? "text-indigo-500" : "text-slate-500"}`}
               >
                 <path
                   stroke-linecap="round"
@@ -107,7 +112,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 />
               </svg>
-              <p className="text-xl font-bold">Home</p>
+              <p className="transition-colors duration-1000 text-xl font-bold">
+                Home
+              </p>
             </Link>
             <Link
               href="/bookings"
@@ -120,7 +127,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-2");
               }}
-              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-1000 flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-2"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -132,7 +139,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className={`w-9 h-9 ${(mouseClick || mouseEnter) == "link-2" ? "text-indigo-500" : "text-slate-500"}`}
+                className={`transition-colors duration-1000 w-9 h-9 ${(mouseClick || mouseEnter) == "link-2" ? "text-indigo-500" : "text-slate-500"}`}
               >
                 <path
                   stroke-linecap="round"
@@ -140,7 +147,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
                 />
               </svg>
-              <p className="text-xl font-bold">Bookings</p>
+              <p className="transition-colors duration-1000 text-xl font-bold">
+                Bookings
+              </p>
             </Link>
             <Link
               href="/cabins"
@@ -153,7 +162,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-3");
               }}
-              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-1000 flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-3"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -165,7 +174,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className={`w-9 h-9 ${(mouseClick || mouseEnter) == "link-3" ? "text-indigo-500" : "text-slate-500"}`}
+                className={`transition-colors duration-1000 w-9 h-9 ${(mouseClick || mouseEnter) == "link-3" ? "text-indigo-500" : "text-slate-500"}`}
               >
                 <path
                   stroke-linecap="round"
@@ -174,7 +183,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 />
               </svg>
 
-              <p className="text-xl font-bold">Cabins</p>
+              <p className="transition-colors duration-1000 text-xl font-bold">
+                Cabins
+              </p>
             </Link>
             <Link
               href="/users"
@@ -187,7 +198,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-4");
               }}
-              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-1000 flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-4"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -199,7 +210,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className={`w-9 h-9 ${(mouseClick || mouseEnter) == "link-4" ? "text-indigo-500" : "text-slate-500"}`}
+                className={`transition-colors duration-1000 w-9 h-9 ${(mouseClick || mouseEnter) == "link-4" ? "text-indigo-500" : "text-slate-500"}`}
               >
                 <path
                   stroke-linecap="round"
@@ -207,7 +218,9 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
                 />
               </svg>
-              <p className="text-xl font-bold">Users</p>
+              <p className="transition-colors duration-1000 text-xl font-bold">
+                Users
+              </p>
             </Link>
             <Link
               href="/settings"
@@ -220,7 +233,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-5");
               }}
-              className={`flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-1000 flex items-center rounded-xl py-3 px-3 gap-4 ${
                 (mouseClick || mouseEnter) == "link-5"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -232,7 +245,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className={`w-9 h-9 ${(mouseClick || mouseEnter) == "link-5" ? "text-indigo-500" : "text-slate-500"}`}
+                className={`transition-colors duration-1000 w-9 h-9 ${(mouseClick || mouseEnter) == "link-5" ? "text-indigo-500" : "text-slate-500"}`}
               >
                 <path
                   stroke-linecap="round"
@@ -246,19 +259,21 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                 />
               </svg>
 
-              <p className="text-xl font-bold">Settings</p>
+              <p className="transition-colors duration-1000 text-xl font-bold">
+                Settings
+              </p>
             </Link>
           </div>
         </aside>
-        <div className="w-screen">
-          <header className="dark:bg-slate-800 bg-slate-50 border dark:border-slate-700 h-10 w-full flex justify-end items-center px-5">
-            <div className="dark:text-slate-50 flex flex-row-reverse gap-4 items-center">
+        <div className="transition-colors duration-1000 w-screen">
+          <header className="transition-colors duration-1000 dark:bg-slate-800 bg-slate-50 border dark:border-slate-700 h-10 w-full flex justify-end items-center px-5">
+            <div className="transition-colors duration-1000 dark:text-slate-50 flex flex-row-reverse gap-4 items-center">
               <button
                 onClick={() => {
                   localStorage.removeItem("accountEmail");
                   router.push("/");
                 }}
-                className="rotate-180"
+                className="transition-colors duration-1000 rotate-180"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -266,7 +281,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6 text-indigo-500"
+                  className="transition-colors duration-1000 w-6 h-6 text-indigo-500"
                 >
                   <path
                     strokeLinecap="round"
@@ -283,7 +298,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 text-indigo-500"
+                    className="transition-colors duration-1000 w-6 h-6 text-indigo-500"
                   >
                     <path
                       strokeLinecap="round"
@@ -298,7 +313,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-6 h-6 text-indigo-500"
+                    className="transition-colors duration-1000 w-6 h-6 text-indigo-500"
                   >
                     <path
                       strokeLinecap="round"
@@ -308,21 +323,21 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   </svg>
                 )}
               </button>
-              <div className="flex gap-4 items-center flex-row-reverse">
-                <p className="font-bold dark:text-slate-50 text-stone-400 text-xs">
-                  {data[0]?.userName}
+              <div className="transition-colors duration-1000 flex gap-4 items-center flex-row-reverse">
+                <p className="transition-colors duration-1000 font-bold dark:text-slate-50 text-stone-400 text-xs">
+                  {data ? data[0]?.userName : ""}
                 </p>
                 <Image
                   height="30"
                   width="30"
-                  className="rounded-full"
+                  className="transition-colors duration-1000 rounded-full"
                   src={data[0]?.avatar ? data[0].avatar : UD}
                   alt="Logo"
                 />
               </div>
             </div>
           </header>
-          <div className="h-less-screen-me scroll-smooth overflow-auto">
+          <div className="transition-colors duration-1000 h-less-screen-me scroll-smooth overflow-auto">
             {children}
           </div>
         </div>

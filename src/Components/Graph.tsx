@@ -56,7 +56,7 @@
 
 // const Graph = () => {
 //   return (
-//     <div className="col-span-4 row-span-3">
+//     <div className="transition-colors duration-1000 col-span-4 row-span-3">
 //       <div style={{ width: 600, height: 300 }}>
 //         <Line options={options} data={data} />
 //       </div>
@@ -66,11 +66,9 @@
 
 // export default Graph;
 
-
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import ReactDOM from 'react-dom';
-import ReactApexChart from 'react-apexcharts';
+import ReactApexChart from "react-apexcharts";
 
 interface SeriesData {
   name: string;
@@ -106,43 +104,43 @@ const Graph: React.FC = () => {
   }>({
     series: [
       {
-        name: 'Total Sales',
-        data: [31, 40, 28, 51, 42, 109, 100]
+        name: "Total Sales",
+        data: [31, 40, 28, 51, 42, 109, 100],
       },
       {
-        name: 'Extra Sales',
-        data: [11, 32, 45, 32, 34, 52, 41]
-      }
+        name: "Extra Sales",
+        data: [11, 32, 45, 32, 34, 52, 41],
+      },
     ],
     options: {
       chart: {
         height: 350,
-        type: 'area'
+        type: "area",
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       stroke: {
-        curve: 'smooth'
+        curve: "smooth",
       },
       xaxis: {
-        type: 'datetime',
+        type: "datetime",
         categories: [
-          '2018-09-19T00:00:00.000Z',
-          '2018-09-19T01:30:00.000Z',
-          '2018-09-19T02:30:00.000Z',
-          '2018-09-19T03:30:00.000Z',
-          '2018-09-19T04:30:00.000Z',
-          '2018-09-19T05:30:00.000Z',
-          '2018-09-19T06:30:00.000Z'
-        ]
+          "2018-09-19T00:00:00.000Z",
+          "2018-09-19T01:30:00.000Z",
+          "2018-09-19T02:30:00.000Z",
+          "2018-09-19T03:30:00.000Z",
+          "2018-09-19T04:30:00.000Z",
+          "2018-09-19T05:30:00.000Z",
+          "2018-09-19T06:30:00.000Z",
+        ],
       },
       tooltip: {
         x: {
-          format: 'dd/MM/yy HH:mm'
-        }
-      }
-    }
+          format: "dd/MM/yy HH:mm",
+        },
+      },
+    },
   });
 
   return (
@@ -159,5 +157,4 @@ const Graph: React.FC = () => {
   );
 };
 
-
-export default Graph
+export default Graph;

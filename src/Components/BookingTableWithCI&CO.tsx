@@ -20,8 +20,8 @@ const Table: React.FC<TableProps> = ({ data }) => {
 
   return (
     <>
-      <table className="w-11/12 rounded-lg divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-50">
-        <tbody className="bg-slate-50 dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+      <table className="transition-colors duration-1000 w-11/12 rounded-lg divide-y divide-slate-200 dark:divide-slate-700 dark:text-slate-50">
+        <tbody className="transition-colors duration-1000 bg-slate-50 dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
           {data?.map((item) => {
             item.status == "unconfirmed"
               ? (statusBG = "unconfirmed")
@@ -30,36 +30,43 @@ const Table: React.FC<TableProps> = ({ data }) => {
                 : item.status == "checked out"
                   ? statusBG == "checked out"
                   : "";
-                  let endDateSplit = item.endDate.split("");
-                  let endDate = Number(endDateSplit[5] + endDateSplit[6])
-                  let howMuchAgo = endDate - date < 0 ? String(endDate - date + 12) + ' month ago' : endDate - date == 0 ? "now" : endDate - date + ' month ago'
+            let endDateSplit = item.endDate.split("");
+            let endDate = Number(endDateSplit[5] + endDateSplit[6]);
+            let howMuchAgo =
+              endDate - date < 0
+                ? String(endDate - date + 12) + " month ago"
+                : endDate - date == 0
+                  ? "now"
+                  : endDate - date + " month ago";
             return (
               <tr key={item.id}>
-                <td className="px-6 py-2 whitespace-nowrap rounded-bl">
+                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap rounded-bl">
                   {item.cabinID}
                 </td>
-                <td className="px-6 py-46 whitespace-nowrap">
+                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap">
                   {item.guestsID}
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap">
-                   {howMuchAgo}
+                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap">
+                  {howMuchAgo}
                 </td>
-                <td className={`px-6 py-2 whitespace-nowrap`}>
+                <td
+                  className={`transition-colors duration-1000 px-6 py-2 whitespace-nowrap`}
+                >
                   <mark
-                    className={`text-slate-50 text-normal px-1 rounded-full ${
+                    className={`transition-colors duration-1000 text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
                       item.status == "unconfirmed"
-                        ? "bg-sky-500"
+                        ? "bg-sky-800"
                         : item.status == "check in"
-                          ? "bg-green-600"
+                          ? "bg-green-700"
                           : item.status == "check out"
-                            ? "bg-gray-400"
+                            ? "bg-gray-500"
                             : ""
                     }`}
                   >
-                    {item.status}
+                    {item.status.toUpperCase()}
                   </mark>
                 </td>
-                <td className="px-6 py-2 whitespace-nowrap rounded-br">
+                <td className="transition-colors duration-1000 px-6 py-1 whitespace-nowrap rounded-br">
                   {item.totalPrice}
                 </td>
               </tr>
@@ -68,7 +75,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
         </tbody>
       </table>
       <br />
-      <div className="flex w-full justify-center items-center">
+      <div className="transition-colors duration-1000 flex w-full justify-center items-center">
         {data ? "" : <LoadingSpinner />}
       </div>
     </>

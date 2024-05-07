@@ -27,17 +27,19 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex w-full h-screen items-start flex-col dark:text-slate-50">
+      <div className="transition-colors duration-1000 flex w-full h-screen items-start flex-col dark:text-slate-50">
         <br />
-        <h1 className="text-4xl ml-5 font-bold">Update hotel settings</h1>
+        <h1 className="transition-colors duration-1000 text-4xl ml-5 font-bold">
+          Update hotel settings
+        </h1>
         <br />
-        <form className="w-2/3 ml-5 bg-slate-50 dark:bg-slate-800 px-10 py-10 rounded-md">
-          <div className="flex justify-between w-full">
-            <label className="font-bold text-lg dark:text-sl">
+        <form className="transition-colors duration-1000 w-2/3 ml-5 bg-slate-50 dark:bg-slate-800 px-10 py-10 rounded-md">
+          <div className="transition-colors duration-1000 flex justify-between w-full">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-sl">
               Minimum nights/booking :
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="number"
               name="minN"
               value={formData.minN}
@@ -46,14 +48,14 @@ const Home = () => {
             />
           </div>
           <br />
-          <hr className="dark:border-slate-700" />
+          <hr className="transition-colors duration-1000 dark:border-slate-700" />
           <br />
-          <div className="flex justify-between w-full">
-            <label className="font-bold text-lg dark:text-sl">
+          <div className="transition-colors duration-1000 flex justify-between w-full">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-sl">
               Maximum nights/booking :
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="number"
               name="maxN"
               value={formData.maxN}
@@ -62,14 +64,14 @@ const Home = () => {
             />
           </div>
           <br />
-          <hr className="dark:border-slate-700" />
+          <hr className="transition-colors duration-1000 dark:border-slate-700" />
           <br />
-          <div className="flex justify-between w-full">
-            <label className="font-bold text-lg dark:text-sl">
+          <div className="transition-colors duration-1000 flex justify-between w-full">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-sl">
               Maximum guests/booking :
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="number"
               name="maxG"
               value={formData.maxG}
@@ -78,14 +80,14 @@ const Home = () => {
             />
           </div>
           <br />
-          <hr className="dark:border-slate-700" />
+          <hr className="transition-colors duration-1000 dark:border-slate-700" />
           <br />
-          <div className="flex justify-between w-full">
-            <label className="font-bold text-lg dark:text-sl">
+          <div className="transition-colors duration-1000 flex justify-between w-full">
+            <label className="transition-colors duration-1000 font-bold text-lg dark:text-sl">
               Breakfast price :
             </label>
             <input
-              className="rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
+              className="transition-colors duration-1000 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-slate-800"
               type="text"
               name="bp"
               value={formData.bp}
@@ -94,7 +96,7 @@ const Home = () => {
             />
           </div>
           <br />
-          <hr className="dark:border-slate-700" />
+          <hr className="transition-colors duration-1000 dark:border-slate-700" />
         </form>
       </div>
     </ClientOnly>

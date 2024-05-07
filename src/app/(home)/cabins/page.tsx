@@ -47,16 +47,18 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col items-center dark:text-slate-50">
+      <div className="transition-colors duration-1000 flex flex-col items-center dark:text-slate-50">
         <br />
-        <div className="w-5/6 flex justify-between items-center">
-          <h1 className="text-4xl font-bold">All cabins</h1>
-          <div className="border-slate-50 dark:border-slate-800 border bg-wihte w-80 rounded flex justify-between px-1 bg-slate-50 dark:bg-slate-800">
+        <div className="transition-colors duration-1000 w-5/6 flex justify-between items-center">
+          <h1 className="transition-colors duration-1000 text-4xl font-bold">
+            All cabins
+          </h1>
+          <div className="transition-colors duration-1000 border-slate-50 dark:border-slate-800 border bg-wihte w-80 rounded flex justify-between px-1 bg-slate-50 dark:bg-slate-800">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-1" || bgClick == "btn-1" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-1" ? "border-slate-400 border" : ""}`}
             >
@@ -66,7 +68,7 @@ const Home = () => {
               onClick={() => handleClick("btn-2")}
               onMouseEnter={() => handleMouseEnter("btn-2")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-2" || bgClick == "btn-2" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-2" ? "border-slate-400 border" : ""}`}
             >
@@ -76,7 +78,7 @@ const Home = () => {
               onClick={() => handleClick("btn-3")}
               onMouseEnter={() => handleMouseEnter("btn-3")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-3" || bgClick == "btn-3" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-3" ? "border-slate-400 border" : ""}`}
             >

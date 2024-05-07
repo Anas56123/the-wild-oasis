@@ -6,12 +6,15 @@ import Table from "@/Components/BookingTableWithCI&CO";
 import { getBookings } from "@/Data/GET/getBookings";
 import ClientOnly from "@/utils/ClientOnly";
 import { getBookingsCI } from "@/Data/GET/getBookingsCI";
+import { getBookingsCO } from "@/Data/GET/getBookingsCO";
 
 type BtnBg = "" | "btn-1" | "btn-2" | "btn-3";
 
 export default function Home() {
   const [data, setData] = useState([]);
   const [dataCI, setDataCI] = useState([]);
+  const [dataCO, setDataCO] = useState([]);
+  const [dataCIAndCO, setDataCIAndCO] = useState([]);
   const [bg, setBg] = useState<BtnBg>("");
   const [bgClick, setBgClick] = useState<BtnBg>("");
 
@@ -23,6 +26,10 @@ export default function Home() {
     (async function () {
       const fd: any = await getBookingsCI();
       setDataCI(fd);
+    })();
+    (async function () {
+      const fd: any = await getBookingsCO();
+      setDataCO(fd);
     })();
   }, []);
 
@@ -40,16 +47,18 @@ export default function Home() {
 
   return (
     <ClientOnly>
-      <div className="flex flex-col items-center">
+      <div className="transition-colors duration-1000 flex flex-col items-center">
         <br />
-        <div className="flex justify-between items-center w-4/5">
-          <h1 className="text-4xl font-bold dark:text-slate-50">Dashboard</h1>
-          <div className="border-slate-50 dark:border-slate-800 border bg-wihte rounded flex justify-between px-1 py-1 bg-slate-50 dark:bg-slate-800">
+        <div className="transition-colors duration-1000 flex justify-between items-center w-4/5">
+          <h1 className="transition-colors duration-1000 text-4xl font-semibold dark:text-slate-50">
+            Dashboard
+          </h1>
+          <div className="transition-colors duration-1000 border-slate-50 dark:border-slate-800 border bg-wihte rounded flex justify-between px-1 py-1 bg-slate-50 dark:bg-slate-800">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1  dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1  dark:text-slate-50 ${
                 bg == "btn-1" || bgClick == "btn-1" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-1" ? "border-slate-400 border" : ""}`}
             >
@@ -59,7 +68,7 @@ export default function Home() {
               onClick={() => handleClick("btn-2")}
               onMouseEnter={() => handleMouseEnter("btn-2")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1  dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1  dark:text-slate-50 ${
                 bg == "btn-2" || bgClick == "btn-2" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-2" ? "border-slate-400 border" : ""}`}
             >
@@ -69,7 +78,7 @@ export default function Home() {
               onClick={() => handleClick("btn-3")}
               onMouseEnter={() => handleMouseEnter("btn-3")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`rounded px-1  dark:text-slate-50 ${
+              className={`transition-colors duration-1000 rounded px-1  dark:text-slate-50 ${
                 bg == "btn-3" || bgClick == "btn-3" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-3" ? "border-slate-400 border" : ""}`}
             >
@@ -78,16 +87,16 @@ export default function Home() {
           </div>
         </div>
         <br />
-        <div className="grid grid-cols-me-4 grid-rows-me-7 gap-10">
-          <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
-            <div className="rounded-full bg-sky-100 dark:bg-sky-600 h-20 w-20 flex justify-center items-center">
+        <div className="transition-colors duration-1000 grid grid-cols-me-4 grid-rows-me-7 gap-10">
+          <div className="transition-colors duration-1000 flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-24">
+            <div className="transition-colors duration-1000 rounded-full bg-sky-100 dark:bg-sky-700 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="w-10 h-10 dark:text-slate-100 text-sky-500"
+                className="transition-colors duration-1000 w-10 h-10 dark:text-slate-100 text-sky-700"
               >
                 <path
                   stroke-linecap="round"
@@ -96,20 +105,24 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="flex flex-col gap-4">
-              <p className="font-bold text-stone-400 text-xs">BOOKINGS</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">{data.length}</span>
+            <div className="transition-colors duration-1000 flex flex-col gap-1">
+              <p className="transition-colors duration-1000 font-semibold text-stone-400 text-xs">
+                BOOKINGS
+              </p>
+              <span className="transition-colors duration-1000 font-semibold dark:text-slate-50 text-2xl">
+                {data?.length}
+              </span>
             </div>
           </div>
-          <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
-            <div className="rounded-full bg-green-100 dark:bg-green-600 h-20 w-20 flex justify-center items-center">
+          <div className="transition-colors duration-1000 flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-24">
+            <div className="transition-colors duration-1000 rounded-full bg-green-100 dark:bg-green-700 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="w-10 h-10 dark:text-slate-100 text-green-500"
+                className="transition-colors duration-1000 w-10 h-10 dark:text-slate-100 text-green-700"
               >
                 <path
                   stroke-linecap="round"
@@ -118,22 +131,24 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="flex flex-col gap-4">
-              <p className="font-bold text-stone-400 text-xs">SALES</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">
+            <div className="transition-colors duration-1000 flex flex-col gap-1">
+              <p className="transition-colors duration-1000 font-semibold text-stone-400 text-xs">
+                SALES
+              </p>
+              <span className="transition-colors duration-1000 font-semibold dark:text-slate-50 text-2xl">
                 $1,960.00
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
-            <div className="rounded-full bg-purple-100 dark:bg-purple-600 h-20 w-20 flex justify-center items-center">
+          <div className="transition-colors duration-1000 flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-24">
+            <div className="transition-colors duration-1000 rounded-full bg-indigo-100 dark:bg-indigo-800 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="w-10 h-10 dark:text-slate-100 text-purple-500"
+                className="transition-colors duration-1000 w-10 h-10 dark:text-slate-100 text-indigo-900"
               >
                 <path
                   stroke-linecap="round"
@@ -142,20 +157,24 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="flex flex-col gap-4">
-              <p className="font-bold text-stone-400 text-xs">CHECK INS</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">{dataCI.length}</span>
+            <div className="transition-colors duration-1000 flex flex-col gap-1">
+              <p className="transition-colors duration-1000 font-semibold text-stone-400 text-xs">
+                CHECK INS
+              </p>
+              <span className="transition-colors duration-1000 font-semibold dark:text-slate-50 text-2xl">
+                {dataCI?.length}
+              </span>
             </div>
           </div>
-          <div className="flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-28">
-            <div className="rounded-full bg-orange-100 dark:bg-orange-400 h-20 w-20 flex justify-center items-center">
+          <div className="transition-colors duration-1000 flex items-center gap-4 bg-slate-50 dark:bg-slate-800 border-slate-200 px-2 w-72 rounded-lg border dark:border-slate-700 h-24">
+            <div className="transition-colors duration-1000 rounded-full bg-orange-100 dark:bg-yellow-800 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                className="w-10 h-10 dark:text-slate-100 text-orange-300"
+                className="transition-colors duration-1000 w-10 h-10 dark:text-slate-100 text-yellow-800"
               >
                 <path
                   stroke-linecap="round"
@@ -164,29 +183,35 @@ export default function Home() {
                 />
               </svg>
             </div>
-            <div className="flex flex-col gap-4">
-              <p className="font-bold text-stone-400 text-xs">OCCUPANCY RATE</p>
-              <span className="font-bold dark:text-slate-50 text-2xl">32%</span>
+            <div className="transition-colors duration-1000 flex flex-col gap-1">
+              <p className="transition-colors duration-1000 font-semibold text-stone-400 text-xs">
+                OCCUPANCY RATE
+              </p>
+              <span className="transition-colors duration-1000 font-semibold dark:text-slate-50 text-2xl">
+                32%
+              </span>
             </div>
           </div>
-          <div className="col-span-2 row-span-3 border rounded-lg flex flex-col items-center dark:bg-slate-800 bg-slate-50 dark:border-slate-700">
+          <div className="transition-colors duration-1000 col-span-2 row-span-3 border rounded-lg flex flex-col items-center dark:bg-slate-800 bg-slate-50 dark:border-slate-700">
             <br />
-            <div className="w-11/12">
-              <h1 className="dark:text-slate-50 text-3xl font-bold">Today</h1>
+            <div className="transition-colors duration-1000 w-11/12">
+              <h1 className="transition-colors duration-1000 dark:text-slate-50 text-2xl font-semibold">
+                Today
+              </h1>
             </div>
             <br />
             <Table data={data} />
           </div>
-          <div className="col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-slate-800 bg-slate-50 border rounded-lg dark:border-slate-700 border-slate-200">
-            <h2 className="dark:text-slate-50 font-semibold text-3xl">
+          <div className="transition-colors duration-1000 col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-slate-800 bg-slate-50 border rounded-lg dark:border-slate-700 border-slate-200">
+            <h2 className="transition-colors duration-1000 dark:text-slate-50 font-semibold text-2xl">
               Stay duration summary
             </h2>
             <br />
-            <div>
+            <div className="transition-colors duration-1000 w-64">
               <DonutBar />
             </div>
           </div>
-          <div className="col-span-4 row-span-3 px-3 border rounded-lg bg-slate-50 border-slate-200 dark:bg-slate-800 dark:border-slate-700">
+          <div className="transition-colors duration-1000 col-span-4 row-span-3 px-3 border rounded-lg bg-slate-50 border-slate-200 dark:bg-slate-800 dark:border-slate-700">
             <Graph />
           </div>
         </div>
