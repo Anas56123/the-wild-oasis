@@ -92,7 +92,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-1");
               }}
-              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 text-sm font-semibold ${
                 (mouseClick || mouseEnter) == "link-1"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -127,7 +127,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-2");
               }}
-              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 text-sm font-semibold ${
                 (mouseClick || mouseEnter) == "link-2"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -162,7 +162,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-3");
               }}
-              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 text-sm font-semibold ${
                 (mouseClick || mouseEnter) == "link-3"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -198,7 +198,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-4");
               }}
-              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 text-sm font-semibold ${
                 (mouseClick || mouseEnter) == "link-4"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -233,7 +233,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               onClick={() => {
                 setMouseClick("link-5");
               }}
-              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 ${
+              className={`transition-colors duration-500 flex items-center rounded-xl py-3 px-3 gap-4 text-sm font-semibold ${
                 (mouseClick || mouseEnter) == "link-5"
                   ? "bg-slate-100 dark:bg-slate-900"
                   : ""
@@ -331,7 +331,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   height="30"
                   width="30"
                   className="transition-colors duration-500 rounded-full"
-                  src={data[0]?.avatar ? data[0].avatar : UD}
+                  src={data[0] ? (data[0]?.avatar ? data[0]?.avatar : "") : UD}
                   alt="Logo"
                 />
               </div>

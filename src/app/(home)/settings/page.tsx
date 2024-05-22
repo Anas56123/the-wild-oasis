@@ -27,7 +27,7 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="transition-colors duration-500 flex w-full h-screen items-start flex-col dark:text-slate-50">
+      <div className="transition-colors duration-500 flex w-full h-screen items-start flex-col text-black dark:text-slate-50">
         <br />
         <h1 className="transition-colors duration-500 text-4xl ml-5 font-bold">
           Update hotel settings
@@ -39,7 +39,7 @@ const Home = () => {
               Minimum nights/booking :
             </label>
             <input
-              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-[#18212f]"
+              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f]"
               type="number"
               name="minN"
               value={formData.minN}
@@ -55,7 +55,7 @@ const Home = () => {
               Maximum nights/booking :
             </label>
             <input
-              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-[#18212f]"
+              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f]"
               type="number"
               name="maxN"
               value={formData.maxN}
@@ -71,7 +71,7 @@ const Home = () => {
               Maximum guests/booking :
             </label>
             <input
-              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-[#18212f]"
+              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f]"
               type="number"
               name="maxG"
               value={formData.maxG}
@@ -87,7 +87,7 @@ const Home = () => {
               Breakfast price :
             </label>
             <input
-              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-slate-50 dark:bg-[#18212f]"
+              className="transition-colors duration-500 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f]"
               type="text"
               name="bp"
               value={formData.bp}
