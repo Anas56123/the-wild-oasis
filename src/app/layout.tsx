@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`transition-colors duration-500 ${inter.className} bg-slate-100 dark:bg-slate-950`}
+        className={`transition-colors duration-300 ${inter.className} bg-slate-50 dark:bg-slate-950`}
       >
         {children}
       </body>

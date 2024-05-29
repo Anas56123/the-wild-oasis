@@ -3,7 +3,7 @@ export default function LoadingSpinner() {
     <div role="status">
       <svg
         aria-hidden="true"
-        className="transition-colors duration-500 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        className="transition-colors duration-300 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ export default function LoadingSpinner() {
           fill="currentFill"
         />
       </svg>
-      <span className="transition-colors duration-500 sr-only">Loading...</span>
+      <span className="transition-colors duration-300 sr-only">Loading...</span>
     </div>
   );
 }

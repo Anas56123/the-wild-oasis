@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.body * {
-  @apply transition-colors duration-200;
+body {
+  font-family: Poppins, sans-serif;
 }
 
 .grid-cols-me-4 {
@@ -14,6 +14,10 @@
   grid-template-rows: repeat(7, minmax(0, 6rem));
 }
 
-.h-less-screen-me{
-  height: 95.8vh;
+.h-less-screen-me {
+  height: calc(100vh - 60px);
+}
+
+.w-less-screen-me {
+  width: calc(100vw - 350px);
 }

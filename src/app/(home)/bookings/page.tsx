@@ -55,18 +55,18 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="transition-colors duration-500 flex flex-col items-center dark:text-slate-50">
+      <div className="transition-colors duration-300 flex flex-col items-center dark:text-slate-50">
         <br />
-        <div className="transition-colors duration-500 w-5/6 flex justify-between items-center">
-          <h1 className="transition-colors duration-500 text-4xl font-bold">
+        <div className="transition-colors duration-300 w-5/6 flex justify-between items-center">
+          <h1 className="transition-colors duration-300 text-4xl font-bold">
             All bookings
           </h1>
-          <div className="transition-colors duration-500 border-slate-50 dark:border-slate-800 border bg-wihte w-96 rounded flex justify-between px-1 bg-slate-50 dark:bg-[#18212f]">
+          <div className="transition-colors duration-300 border-slate-50 dark:border-slate-800 border bg-wihte w-96 rounded flex justify-between px-1 bg-white dark:bg-[#18212f]">
             <button
               onClick={() => handleClick("btn-1")}
               onMouseEnter={() => handleMouseEnter("btn-1")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-500 rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-1" || bgClick == "btn-1" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-1" ? "border-slate-400 border" : ""}`}
             >
@@ -76,7 +76,7 @@ const Home = () => {
               onClick={() => handleClick("btn-2")}
               onMouseEnter={() => handleMouseEnter("btn-2")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-500 rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-2" || bgClick == "btn-2" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-2" ? "border-slate-400 border" : ""}`}
             >
@@ -86,7 +86,7 @@ const Home = () => {
               onClick={() => handleClick("btn-3")}
               onMouseEnter={() => handleMouseEnter("btn-3")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-500 rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-3" || bgClick == "btn-3" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-3" ? "border-slate-400 border" : ""}`}
             >
@@ -96,7 +96,7 @@ const Home = () => {
               onClick={() => handleClick("btn-4")}
               onMouseEnter={() => handleMouseEnter("btn-4")}
               onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-500 rounded px-1 dark:text-slate-50 ${
+              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
                 bg == "btn-4" || bgClick == "btn-4" ? "bg-indigo-500" : ""
               } ${bgClick == "btn-4" ? "border-slate-400 border" : ""}`}
             >
