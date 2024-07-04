@@ -63,19 +63,19 @@ const Home = () => {
 
   return (
     <ClientOnly>
-      <div className="h-4/5 w-less-screen-me flex justify-center items-center">
-        <div className="transition-colors duration-300 flex h-full w-4/5 items-start flex-col dark:text-slate-50">
+      <div className="h-3/5 w-less-screen-me flex justify-center items-center">
+        <div className="transition-colors duration-300 flex h-full w-5/6 items-start flex-col dark:text-slate-50">
           <br />
-          <h1 className="transition-colors duration-300 text-3xl font-semibold">
+          <h1 className="transition-colors duration-300 text-3xl font-bold">
             Create a new user
           </h1>
           <br />
           <form
             onSubmit={handleSubmit}
-            className="transition-colors duration-300 w-full bg-white dark:bg-[#18212f] px-10 py-10 rounded-md"
+            className="transition-colors duration-300 w-full bg-white dark:bg-[#18212f] px-10 py-5 rounded-md"
           >
-            <div className="transition-colors duration-300 flex justify-between w-2/3 items-center">
-              <label className="transition-colors duration-300 font-bold text-lg dark:text-sl">
+            <div className="transition-colors duration-300 flex justify-between w-1/2 items-center">
+              <label className="transition-colors duration-300 font-medium text-sl">
                 Email adress
               </label>
               <input
@@ -88,8 +88,8 @@ const Home = () => {
               />
             </div>
             <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
-            <div className="transition-colors duration-300 flex justify-between w-2/3 items-center">
-              <label className="transition-colors duration-300 font-bold text-lg dark:text-sl">
+            <div className="transition-colors duration-300 flex justify-between w-1/2 items-center">
+              <label className="transition-colors duration-300 font-medium text-sl">
                 Full name
               </label>
               <input
@@ -102,8 +102,8 @@ const Home = () => {
               />
             </div>
             <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
-            <div className="transition-colors duration-300 flex justify-between w-2/3 items-center">
-              <label className="transition-colors duration-300 font-bold text-lg dark:text-sl">
+            <div className="transition-colors duration-300 flex justify-between w-1/2 items-center">
+              <label className="transition-colors duration-300 font-medium text-sl">
                 Password (min 8 characters)
               </label>
               <input
@@ -116,8 +116,8 @@ const Home = () => {
               />
             </div>
             <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
-            <div className="transition-colors duration-300 flex justify-between w-2/3 items-center">
-              <label className="transition-colors duration-300 font-bold text-lg dark:text-sl">
+            <div className="transition-colors duration-300 flex justify-between w-1/2 items-center">
+              <label className="transition-colors duration-300 font-medium text-sl">
                 Phone number:
               </label>
               <input
@@ -130,17 +130,24 @@ const Home = () => {
               />
             </div>
             <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
-            <div className="transition-colors duration-300 flex justify-end w-full">
+            <br />
+            <div className="transition-colors duration-300 flex flex-row-reverse justify-start gap-3 w-full">
               <button
-                className="transition-colors duration-300 dark:text-slate-50 px-3 rounded w-72 h-10 bg-slate-50 dark:bg-[#1f2937] border border-slate-100 dark:border-slate-600"
+                className="transition-colors duration-300 text-slate-50 px-3 rounded bg-indigo-600 hover:bg-indigo-700"
                 type="submit"
               >
-                Submit
+                Create new user
+              </button>
+              <button
+                className="transition-colors duration-300 bg-white hover:bg-slate-50 rounded dark:hover:bg-[#18202a] dark:bg-[#1f2937] px-4 py-3 border border-slate-100 dark:border-[#374151]"
+                type="button"
+              >
+                Cancel
               </button>
             </div>
           </form>
           <br />
-          <p className="transition-colors duration-300 text-red-500 font-bold">
+          <p className="transition-colors duration-300 text-red-500 font-semibold">
             {error}
           </p>
         </div>

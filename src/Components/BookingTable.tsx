@@ -1,4 +1,6 @@
+import { useQueries } from "react-query";
 import LoadingSpinner from "./LoadingSpinner";
+import { getGuestsByID } from "@/Data/GET/getGuestsByID";
 
 interface TableProps {
   data: {
@@ -12,103 +14,90 @@ interface TableProps {
   }[];
 }
 
-type statusForm = "unconfirmed" | "checked out" | "checked in" | "";
-
 const Table: React.FC<TableProps> = ({ data }) => {
-  let statusBG: statusForm = "";
-  const date = new Date().getMonth() + 1;
+  const userQueries: any = useQueries(
+    data.map((item: any) => {
+      return {
+        queryKey: ["item", item.guestsID],
+        queryFn: () => getGuestsByID(item.guestsID),
+      };
+    })
+  );
+
+  const newData = data.map((item: any) => ({
+    ...item,
+    guestsEmail: userQueries?.find(
+      (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
+    )?.data?.[0]?.email,
+    fullName: userQueries?.find(
+      (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
+    )?.data?.[0]?.fullName,
+  }));
 
   return (
     <>
-      <table className="transition-colors duration-300 w-5/6 border rounded-lg divide-y divide-slate-200 dark:divide-slate-700 border-slate-200 dark:border-[#1f2937] border-[#f3f4f6]">
-        <thead className="transition-colors duration-300 bg-white dark:bg-slate-900">
-          <tr>
-            <th
-              scope="col"
-              className="transition-colors duration-300 px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tl rounded-tr"
+      <div
+        className="w-9/12 transition-colors duration-300 border divide-slate-200 dark:divide-slate-700
+        dark:border-[#444952] border-[#f3f4f6] rounded-xl text-sm"
+      >
+        <header className="transition-colors duration-300 bg-white dark:bg-[#111827] flex justify-between w-full px-6 py-3">
+          <div className="w-16">CABIN</div>
+          <div className="w-56">GUESTS</div>
+          <div className="w-72">DATES</div>
+          <div className="w-24">STATUS</div>
+          <div className="w-24">AMOUNT</div>
+        </header>
+        <hr />
+        <section className="divide-[#1f2937] divide-y bg-[#18212f]">
+          {newData?.map((item: any) => (
+            <div
+              className="flex justify-between items-center w-full px-6 py-3"
+              key={item.id}
             >
-              Cabins
-            </th>
-            <th
-              scope="col"
-              className="transition-colors duration-300 px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Guests
-            </th>
-            <th
-              scope="col"
-              className="transition-colors duration-300 px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Dates
-            </th>
-            <th
-              scope="col"
-              className="transition-colors duration-300 px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider"
-            >
-              Status
-            </th>
-            <th
-              scope="col"
-              className="transition-colors duration-300 px-6 py-3 text-left text-sm text-slate-500 dark:text-slate-50 uppercase tracking-wider rounded-tr"
-            >
-              Amount
-            </th>
-          </tr>
-        </thead>
-        <tbody className="transition-colors duration-300 bg-white dark:bg-[#18212f] divide-y divide-slate-200 dark:divide-slate-700">
-          {data?.map((item) => {
-            item.status == "unconfirmed"
-              ? (statusBG = "unconfirmed")
-              : item.status == "checked in"
-                ? statusBG == "checked in"
-                : item.status == "checked out"
-                  ? statusBG == "checked out"
-                  : "";
-            let endDateSplit = item.endDate.split("");
-            let endDate = Number(endDateSplit[5] + endDateSplit[6]);
-            let howMuchAgo =
-              endDate - date < 0
-                ? String(endDate - date + 12) + " month ago"
-                : endDate - date == 0
-                  ? "now"
-                  : endDate - date + " month ago";
-            return (
-              <tr key={item.id}>
-                <td className="transition-colors duration-300 px-6 py-6 whitespace-nowrap rounded-bl">
-                  {item.cabinID}
-                </td>
-                <td className="transition-colors duration-300 px-6 py-46 whitespace-nowrap">
-                  {item.guestsID}
-                </td>
-                <td className="transition-colors duration-300 px-6 py-6 whitespace-nowrap">
-                  {howMuchAgo}
-                </td>
-                <td
-                  className={`transition-colors duration-300 px-6 py-6 whitespace-nowrap`}
+              <div className="w-16">{"00" + item.cabinID}</div>
+              <div className="w-56">
+                <span>{item.fullName}</span>
+                <br />
+                <span className="text-sm text-[#9ca3af]">
+                  {item.guestsEmail}
+                </span>
+              </div>
+              <div className="w-72">DATES</div>
+              <div className="w-24">
+                <mark
+                  className={`transition-colors duration-300  dark:text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
+                    item.status == "unconfirmed"
+                      ? "dark:bg-sky-800 bg-sky-100 text-sky-800"
+                      : item.status == "check in"
+                        ? "dark:bg-green-700 bg-green-100 text-green-700"
+                        : item.status == "check out"
+                          ? "dark:bg-gray-500 bg-gray-100 text-gray-500"
+                          : ""
+                  }`}
                 >
-                  <mark
-                    className={`transition-colors duration-300  dark:text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
-                      item.status == "unconfirmed"
-                        ? "dark:bg-sky-800 bg-sky-100 text-sky-800"
-                        : item.status == "check in"
-                          ? "dark:bg-green-700 bg-green-100 text-green-700"
-                          : item.status == "check out"
-                            ? "dark:bg-gray-500 bg-gray-100 text-gray-500"
-                            : ""
-                    }`}
-                  >
-                    {item.status.toUpperCase()}
-                  </mark>
-                </td>
-                <td className="transition-colors duration-300 px-6 py-6 whitespace-nowrap rounded-br">
-                  {item.totalPrice}
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <br />
+                  {item.status.toUpperCase()}
+                </mark>
+              </div>
+              <div className="w-24">{item.totalPrice}</div>
+            </div>
+          ))}
+        </section>
+        <hr />
+        <footer className="m-4 flex items-center justify-between bg-[#111827]">
+          <p>
+            Showing <strong>1</strong> to <strong>{data.length}</strong> of{" "}
+            <strong>{data.length}</strong> results
+          </p>
+          <div className="flex gap-5">
+            <button className="cursor-not-allowed" disabled>
+              {"<"} Previous
+            </button>
+            <button className="cursor-not-allowed" disabled>
+              Next {">"}
+            </button>
+          </div>
+        </footer>
+      </div>
       <div className="transition-colors duration-300 flex w-full justify-center items-center">
         {data ? "" : <LoadingSpinner />}
       </div>

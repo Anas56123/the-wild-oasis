@@ -1,7 +1,7 @@
 import supabase from "../Supabase/Supabase";
 
-export async function getAccounts() {
-  let { data, error } = await supabase.from("Accounts").select("email");
+export async function getGuests() {
+  let { data, error } = await supabase.from("Guests").select("*");
   if (error) {
     console.error(error);
     return;

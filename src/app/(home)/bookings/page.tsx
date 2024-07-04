@@ -5,8 +5,10 @@ import { getBookings } from "@/Data/GET/getBookings";
 import { getBookingsCI } from "@/Data/GET/getBookingsCI";
 import { getBookingsCO } from "@/Data/GET/getBookingsCO";
 import { getBookingsUn } from "@/Data/GET/getBookingsUn";
+import { getGuestsByID } from "@/Data/GET/getGuestsByID";
 import ClientOnly from "@/utils/ClientOnly";
 import { useEffect, useState } from "react";
+import { useQueries } from "react-query";
 
 type BtnBg = "" | "btn-1" | "btn-2" | "btn-3" | "btn-4";
 
@@ -57,8 +59,8 @@ const Home = () => {
     <ClientOnly>
       <div className="transition-colors duration-300 flex flex-col items-center dark:text-slate-50">
         <br />
-        <div className="transition-colors duration-300 w-5/6 flex justify-between items-center">
-          <h1 className="transition-colors duration-300 text-4xl font-bold">
+        <div className="transition-colors duration-300 w-9/12 flex justify-between items-center">
+          <h1 className="transition-colors duration-300 text-3xl font-bold">
             All bookings
           </h1>
           <div className="transition-colors duration-300 border-slate-50 dark:border-slate-800 border bg-wihte w-96 rounded flex justify-between px-1 bg-white dark:bg-[#18212f]">

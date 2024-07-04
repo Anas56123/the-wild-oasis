@@ -30,6 +30,7 @@ export default function Home() {
       const fd: any = await getBookingsCO();
       setDataCO(fd);
     })();
+
   }, []);
 
   function handleClick(state: BtnBg) {
@@ -48,7 +49,7 @@ export default function Home() {
     <ClientOnly>
       <div className="transition-colors duration-300 flex flex-col items-center">
         <br />
-        <div className="transition-colors duration-300 flex justify-between items-center w-4/5">
+        <div className="transition-colors duration-300 flex justify-between items-center w-9/12">
           <h1 className="transition-colors duration-300 text-4xl font-semibold dark:text-slate-50">
             Dashboard
           </h1>
@@ -86,7 +87,7 @@ export default function Home() {
           </div>
         </div>
         <br />
-        <div className="transition-colors duration-300 grid grid-cols-me-4 grid-rows-me-7 gap-10">
+        <div className="transition-colors duration-300 grid grid-cols-me-4 grid-rows-me-7 gap-5">
           <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] border-slate-200 px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
             <div className="transition-colors duration-300 rounded-full bg-sky-100 dark:bg-sky-700 h-16 w-16 flex justify-center items-center">
               <svg

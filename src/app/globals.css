@@ -21,3 +21,20 @@ body {
 .w-less-screen-me {
   width: calc(100vw - 350px);
 }
+.dot{
+  filter: invert(0%) sepia(0%) saturate(7449%) hue-rotate(195deg) brightness(95%) contrast(100%);
+}
+
+.dark\:dots:where(.dark, .dark *) {
+  --tw-text-opacity: 1;
+  filter: invert(98%) sepia(52%) saturate(646%) hue-rotate(180deg) brightness(121%) contrast(100%);
+}
+
+.gridT {
+  display: grid;
+  grid-template-columns: 0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem;
+  column-gap: 2.4rem;
+  -webkit-box-align: center;
+  align-items: center;
+  transition: none 0s ease 0s;
+}

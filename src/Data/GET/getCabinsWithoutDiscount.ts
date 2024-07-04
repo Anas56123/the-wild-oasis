@@ -5,7 +5,7 @@ export const getCabinsWithoutDiscount = async () => {
     .from("Cabins")
     .select("*")
     .order("id", { ascending: true })
-    .neq("discount", 0);
+    .gt("discount", 0);
 
   if (error) {
     console.error(error);
