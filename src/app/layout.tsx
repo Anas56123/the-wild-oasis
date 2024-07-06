@@ -20,6 +20,7 @@ export default function RootLayout({
       <body
         className={`transition-colors duration-300 ${inter.className} bg-slate-50 dark:bg-slate-950`}
       >
+        
         <Providers>{children}</Providers>
       </body>
     </html>

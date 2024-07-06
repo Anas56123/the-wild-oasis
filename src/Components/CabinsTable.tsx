@@ -92,7 +92,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
       <br /> */}
       <div
         className="w-9/12 transition-colors duration-300 border divide-slate-200 dark:divide-slate-700
-        dark:border-[#444952] border-[#f3f4f6] rounded-xl text-sm"
+        dark:border-[#444952] border-[#f3f4f6] rounded-xl text-sm overflow-hidden"
       >
         <header className="transition-colors duration-300 bg-white dark:bg-[#111827] flex justify-between w-full px-6 py-3">
           <div className="w-16">CABIN</div>

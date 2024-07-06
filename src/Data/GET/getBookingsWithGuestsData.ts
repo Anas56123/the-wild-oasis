@@ -1,9 +1,9 @@
 import supabase from "../Supabase/Supabase";
 
-export const getBookings = async () => {
+export const getBookingsWithGuestsData = async (status: string) => {
   let { data, error } = await supabase
     .from("Bookings")
-    .select("*")
+    .select("*, Guests(fullName, countryFlag)").or(`status.ilike.%${status}%`)
     .order("id", { ascending: true });
 
   if (error) {

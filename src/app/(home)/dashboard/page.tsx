@@ -3,47 +3,39 @@ import { useEffect, useState } from "react";
 import DonutBar from "@/Components/DonutBar";
 import Graph from "@/Components/Graph";
 import Table from "@/Components/BookingTableWithCI&CO";
-import { getBookings } from "@/Data/GET/getBookings";
 import ClientOnly from "@/utils/ClientOnly";
-import { getBookingsCI } from "@/Data/GET/getBookingsCI";
-import { getBookingsCO } from "@/Data/GET/getBookingsCO";
+import { getBookingsWithGuestsData } from "@/Data/GET/getBookingsWithGuestsData";
 
-type BtnBg = "" | "btn-1" | "btn-2" | "btn-3";
+type statusValues = "" | "unconfirmed" | "check in" | "check out";
+type Btns = 0 | 7 | 30 | 90;
 
 export default function Home() {
   const [data, setData] = useState([]);
-  const [dataCI, setDataCI] = useState([]);
-  const [dataCO, setDataCO] = useState([]);
-  const [bg, setBg] = useState<BtnBg>("");
-  const [bgClick, setBgClick] = useState<BtnBg>("");
+  const [bgx, setBgx] = useState(0);
+  const [status, setStatus] = useState<statusValues>("");
+  const statusOptions: Btns[] = [7, 30, 90];
+  const [dataCI, setDataCI] = useState([])
+  const [dataCO, setDataCO] = useState([])
 
   useEffect(() => {
     (async function () {
-      const fd: any = await getBookings();
+      const fd = await getBookingsWithGuestsData(status);
       setData(fd);
     })();
-    (async function () {
-      const fd: any = await getBookingsCI();
+  }, [status]);
+
+  useEffect(() => {
+    async function getCI(){
+      const fd = await getBookingsWithGuestsData('check in');
       setDataCI(fd);
-    })();
-    (async function () {
-      const fd: any = await getBookingsCO();
+    }
+    async function getCO(){
+      const fd = await getBookingsWithGuestsData('check out');
       setDataCO(fd);
-    })();
-
-  }, []);
-
-  function handleClick(state: BtnBg) {
-    setBgClick(state);
-  }
-
-  function handleMouseEnter(state: BtnBg) {
-    setBg(state);
-  }
-
-  function handleMouseLeave() {
-    setBg("");
-  }
+    }
+    getCI()
+    getCO()
+  }, [])
 
   return (
     <ClientOnly>
@@ -54,41 +46,20 @@ export default function Home() {
             Dashboard
           </h1>
           <div className="transition-colors duration-300 border-slate-50 dark:border-slate-800 border bg-wihte rounded flex justify-between px-1 py-1 bg-white dark:bg-[#18212f]">
-            <button
-              onClick={() => handleClick("btn-1")}
-              onMouseEnter={() => handleMouseEnter("btn-1")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1  dark:text-slate-50 ${
-                bg == "btn-1" || bgClick == "btn-1" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-1" ? "border-slate-400 border" : ""}`}
-            >
-              Last 7 days
-            </button>
-            <button
-              onClick={() => handleClick("btn-2")}
-              onMouseEnter={() => handleMouseEnter("btn-2")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1  dark:text-slate-50 ${
-                bg == "btn-2" || bgClick == "btn-2" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-2" ? "border-slate-400 border" : ""}`}
-            >
-              Last 30 days
-            </button>
-            <button
-              onClick={() => handleClick("btn-3")}
-              onMouseEnter={() => handleMouseEnter("btn-3")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1  dark:text-slate-50 ${
-                bg == "btn-3" || bgClick == "btn-3" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-3" ? "border-slate-400 border" : ""}`}
-            >
-              Last 90 days
-            </button>
+            {statusOptions.map((label, index) => (
+              <button
+                onClick={() => setBgx(7)}
+                key={index}
+                className={`transition-colors duration-300 rounded px-1 py-1 dark:text-slate-50 hover:bg-indigo-400 ${bgx == label ? "bg-indigo-500" : ""}`}
+              >
+                Last 7 days
+              </button>
+            ))}
           </div>
         </div>
         <br />
         <div className="transition-colors duration-300 grid grid-cols-me-4 grid-rows-me-7 gap-5">
-          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] border-slate-200 px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
+          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
             <div className="transition-colors duration-300 rounded-full bg-sky-100 dark:bg-sky-700 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,11 +81,11 @@ export default function Home() {
                 BOOKINGS
               </p>
               <span className="transition-colors duration-300 font-semibold dark:text-slate-50 text-2xl">
-                {data?.length}
+                {dataCI?.length}
               </span>
             </div>
           </div>
-          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] border-slate-200 px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
+          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
             <div className="transition-colors duration-300 rounded-full bg-green-100 dark:bg-green-700 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +111,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] border-slate-200 px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
+          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
             <div className="transition-colors duration-300 rounded-full bg-indigo-100 dark:bg-indigo-800 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +137,7 @@ export default function Home() {
               </span>
             </div>
           </div>
-          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] border-slate-200 px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
+          <div className="transition-colors duration-300 flex items-center gap-4 bg-white dark:bg-[#18212f] px-2 w-72 rounded-lg border dark:border-[#1f2937] border-[#f3f4f6] h-24">
             <div className="transition-colors duration-300 rounded-full bg-orange-100 dark:bg-yellow-800 h-16 w-16 flex justify-center items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -200,9 +171,11 @@ export default function Home() {
               </h1>
             </div>
             <br />
-            <Table data={[...dataCI, ...dataCO]} />
+            <Table
+              data={[...dataCI, ...dataCO]}
+            />
           </div>
-          <div className="transition-colors duration-300 col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-[#18212f] bg-white border rounded-lg dark:border-[#1f2937] border-[#f3f4f6] border-slate-200">
+          <div className="transition-colors duration-300 col-span-2 row-span-3 w-full flex flex-col justify-center items-center dark:bg-[#18212f] bg-white border rounded-lg dark:border-[#1f2937] border-[#f3f4f6]">
             <h2 className="transition-colors duration-300 dark:text-slate-50 font-semibold text-2xl">
               Stay duration summary
             </h2>
@@ -211,7 +184,7 @@ export default function Home() {
               <DonutBar />
             </div>
           </div>
-          <div className="transition-colors duration-300 col-span-4 row-span-3 px-3 border rounded-lg bg-white border-slate-200 dark:bg-[#18212f] dark:border-[#1f2937] border-[#f3f4f6]">
+          <div className="transition-colors duration-300 col-span-4 row-span-3 px-3 border rounded-lg bg-white dark:bg-[#18212f] dark:border-[#1f2937] border-[#f3f4f6]">
             <Graph />
           </div>
         </div>

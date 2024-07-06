@@ -18,7 +18,7 @@ interface TableProps {
 
 const Table: React.FC<TableProps> = ({ data }) => {
   const userQueries: any = useQueries(
-    data.map((item) => {
+    data?.map((item) => {
       return {
         queryKey: ["item", item.guestsID],
         queryFn: () => getGuestsByID(item.guestsID),

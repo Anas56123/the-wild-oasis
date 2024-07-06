@@ -7,6 +7,7 @@ import UD from "../../../public/default-user.jpg";
 import Image from "next/image";
 import { getAccountByEmail } from "@/Data/GET/getAccountsByEmail";
 import { useRouter } from "next/navigation";
+import { DarkModeProvider, useDarkMode } from "@/context/darklightContext";
 
 type LinkBg = "" | "link-1" | "link-2" | "link-3" | "link-4" | "link-5";
 type FetchedData =
@@ -25,11 +26,11 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   console.log(localStorage.getItem("darkMode"));
   const router = useRouter();
   const [data, setData] = useState<FetchedData>([]);
-  const [darkMode, setDarkMode] = useState(
-    Boolean(localStorage.getItem("darkMode"))
-  );
   const [mouseEnter, setMouseEnter] = useState<LinkBg>("");
   const [mouseClick, setMouseClick] = useState<LinkBg>("");
+
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  console.log({ isDarkMode, toggleDarkMode });
 
   useEffect(() => {
     if (window.location.href === "http://localhost:3000/dashboard") {
@@ -51,33 +52,28 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
       console.log(data);
     }
     getData();
-    const storedTheme = localStorage.getItem("color-theme");
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    setDarkMode(storedTheme === "dark" || (!storedTheme && prefersDarkMode));
   }, []);
 
-  const toggleTheme = () => {
-    setDarkMode((prevTheme) => {
-      const newTheme = !prevTheme ? "dark" : "light";
-      document.documentElement.classList.toggle("dark", newTheme === "dark");
-      localStorage.setItem("color-theme", newTheme);
-      return !prevTheme;
-    });
-  };
+  // const toggleTheme = () => {
+  //   setDarkMode((prevTheme) => {
+  //     const newTheme = !prevTheme ? "dark" : "light";
+  //     document.documentElement.classList.toggle("dark", newTheme === "dark");
+  //     localStorage.setItem("color-theme", newTheme);
+  //     return !prevTheme;
+  //   });
+  // };
 
   return (
     <>
       <div
-        className={`transition-colors duration-300 bg-slate-50 dark:bg-[#111827] flex ${darkMode ? "dark" : ""}`}
+        className={`transition-colors duration-300 bg-slate-50 dark:bg-[#111827] flex ${isDarkMode ? "dark" : ""}`}
       >
         <aside className="transition-colors duration-300 dark:text-slate-50 border dark:border-[#1f2937] border-[#f3f4f6] dark:bg-[#18212f] bg-white px-4 flex w-80 flex-col items-center h-screen">
           <br />
           <Image
             height="130"
             width="130"
-            src={darkMode ? LogoN : LogoL}
+            src={isDarkMode ? LogoN : LogoL}
             alt="Logo"
           />
           <br />
@@ -289,8 +285,8 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
                   />
                 </svg>
               </button>
-              <button onClick={toggleTheme}>
-                {darkMode ? (
+              <button onClick={toggleDarkMode}>
+                {isDarkMode ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
