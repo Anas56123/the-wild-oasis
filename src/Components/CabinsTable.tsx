@@ -2,7 +2,8 @@
 import Image from "next/image";
 import LoadingSpinner from "./LoadingSpinner";
 import Dots from "@/../public/dots-vertical-svgrepo-com (1).svg";
-import { useRef, useState } from "react";
+import { ReactNode, useRef, useState, MouseEvent } from "react";
+import ReactDOM from "react-dom";
 import useClickOutside from "@/hooks/useClickOutside";
 
 interface TableProps {
@@ -16,19 +17,67 @@ interface TableProps {
   }[];
 }
 
+interface PopoverProps {
+  children: React.ReactNode;
+  target: { top: number; left: number };
+  visible: boolean;
+}
+
 const Table: React.FC<TableProps> = ({ data }) => {
   const [openDropMenu, setOpenDropMenu] = useState<number>(0);
+
+  const [popover, setPopover] = useState<{
+    visible: boolean;
+    target: { top: number; left: number };
+    content: ReactNode;
+  }>({
+    visible: false,
+    target: { top: 0, left: 0 },
+    content: <></>,
+  });
+
+  const showPopover = (
+    e: React.MouseEvent<HTMLElement>,
+    content: React.ReactNode
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setPopover({
+      visible: true,
+      target: {
+        top: rect.top + window.scrollY + rect.height,
+        left: rect.left + window.scrollX,
+      },
+      content,
+    });
+  };
+
+  const hidePopover = () => setPopover({ ...popover, visible: false });
+
   const dropDownRef = useRef(null);
-  console.log("ref", dropDownRef);
+
   useClickOutside(
     dropDownRef,
     () => {
-      if (openDropMenu !== 0) {
-        setOpenDropMenu(0);
-      }
+      hidePopover();
     },
     openDropMenu
   );
+
+  const Popover = ({ children, target, visible }: PopoverProps) => {
+    if (!visible) return null;
+
+    const popoverContent = (
+      <div
+        className="absolute w-6 h-10"
+        style={{ top: target.top, left: target.left }}
+      >
+        {children}
+      </div>
+    );
+
+    return ReactDOM.createPortal(popoverContent, document.body);
+  };
+
   return (
     <>
       <div
@@ -59,36 +108,35 @@ const Table: React.FC<TableProps> = ({ data }) => {
               >
                 {item.discount == null ? "-" : item.discount}
               </div>
+
+              <Popover target={popover.target} visible={true}>
+                {popover.content}
+              </Popover>
+
               <Image
-                onClick={() => {
-                  setOpenDropMenu(item.id);
-                }}
-                className="w-16 h-8 font-bold dark:text-white dark:dots dot flex justify-center"
+                onClick={(e) =>
+                  showPopover(
+                    e,
+                    <div
+                      ref={dropDownRef}
+                      className={`absolute shadow-sm right-2 z-10 text-white  bg-[#18212F] rounded overflow-hidden`}
+                    >
+                      <p className=" p-1 px-6  hover:bg-[#111827] cursor-pointer">
+                        Duplicate
+                      </p>
+                      <p className=" p-1 px-6 cursor-pointer hover:bg-[#111827]">
+                        Edit
+                      </p>
+                      <p className="] p-1 px-6 cursor-pointer hover:bg-[#111827]">
+                        Delete
+                      </p>
+                    </div>
+                  )
+                }
+                className={`w-8 h-8 font-bold dark:text-white dark:dots dot flex justify-center`}
                 src={Dots}
                 alt="dots"
               />
-              {openDropMenu == item.id && (
-                <div
-                  ref={dropDownRef}
-                  className={`
-                    absolute right-20 p-10 z-10 bg-white dark:bg-[#528eef] ${openDropMenu == item.id ? "" : "hidden"}`}
-                >
-                  <p
-                    onClick={() => {
-                      console.log("21212121");
-                    }}
-                    className="hover:bg-[#f9fafb] dark:hover:bg-[#111827] cursor-pointer"
-                  >
-                    Duplicate
-                  </p>
-                  <p className="hover:bg-[#f9fafb] dark:hover:bg-[#111827]">
-                    Edit
-                  </p>
-                  <p className="hover:bg-[#f9fafb] dark:hover:bg-[#111827]">
-                    Delete
-                  </p>
-                </div>
-              )}
             </div>
           ))}
         </section>
