@@ -1,35 +1,49 @@
 "use client";
 import Table from "@/Components/BookingTable";
 import { getBookingsWithGuestsData } from "@/Data/GET/getBookingsWithGuestsData";
-import ClientOnly from "@/utils/ClientOnly";
 import { useEffect, useState } from "react";
+
+export const ItemPerPage = 4;
 
 type statusValues = "" | "unconfirmed" | "check in" | "check out";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState<statusValues>("");
+  const [pageNum, setPageNum] = useState<number>(0);
+
   const statusOptions: { value: statusValues; label: string }[] = [
     { value: "", label: "All" },
     { value: "unconfirmed", label: "Unconfirmed" },
     { value: "check in", label: "Check-in" },
     { value: "check out", label: "Check-out" },
   ];
+  const [count, setCount] = useState<number>(0);
 
   useEffect(() => {
     async function getData() {
-      const fd: any = await getBookingsWithGuestsData(status);
-      setData(fd);
+      const fd: any = await getBookingsWithGuestsData(status, getFromAndTo);
+      setData(fd.data);
+      setCount(fd.count);
     }
     getData();
-  }, [status]);
+  }, [status, pageNum]);
 
   function handleClickStatus(state: statusValues) {
     setStatus(state);
   }
 
+  function getFromAndTo() {
+    let from = pageNum * ItemPerPage;
+    let to = from + ItemPerPage;
+    if (pageNum > 0) {
+      from += 1;
+    }
+    return { from, to };
+  }
+
   return (
-    <ClientOnly>
+    <>
       <div className="transition-colors duration-300 flex flex-col items-center dark:text-slate-50">
         <br />
         <div className="transition-colors duration-300 w-9/12 flex justify-between items-center">
@@ -50,9 +64,14 @@ const Home = () => {
           </div>
         </div>
         <br />
-        <Table data={data} />
+        <Table
+          data={data}
+          setPageNum={setPageNum}
+          pageNum={pageNum}
+          dataLength={count}
+        />
       </div>
-    </ClientOnly>
+    </>
   );
 };
 

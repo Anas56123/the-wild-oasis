@@ -6,32 +6,33 @@ import Table from "@/Components/BookingTableWithCI&CO";
 import ClientOnly from "@/utils/ClientOnly";
 import { getBookingsWithGuestsData } from "@/Data/GET/getBookingsWithGuestsData";
 
-type statusValues = "" | "unconfirmed" | "check in" | "check out";
 type Btns = 0 | 7 | 30 | 90;
 
 export default function Home() {
-  const [data, setData] = useState([]);
+  const [pageNum, setPageNum] = useState(0);
   const [bgx, setBgx] = useState(0);
-  const [status, setStatus] = useState<statusValues>("");
   const statusOptions: Btns[] = [7, 30, 90];
   const [dataCI, setDataCI] = useState([])
   const [dataCO, setDataCO] = useState([])
 
-  useEffect(() => {
-    (async function () {
-      const fd = await getBookingsWithGuestsData(status);
-      setData(fd);
-    })();
-  }, [status]);
+  function getFromAndTo() {
+    const ItemPerPage = 6;
+    let from = pageNum * ItemPerPage;
+    let to = from + ItemPerPage;
+    if (pageNum > 0) {
+      from += 1;
+    }
+    return { from, to };
+  }
 
   useEffect(() => {
     async function getCI(){
-      const fd = await getBookingsWithGuestsData('check in');
-      setDataCI(fd);
+      const fd = await getBookingsWithGuestsData('check in', getFromAndTo);
+      setDataCI(fd.data);
     }
     async function getCO(){
-      const fd = await getBookingsWithGuestsData('check out');
-      setDataCO(fd);
+      const fd = await getBookingsWithGuestsData('check out', getFromAndTo);
+      setDataCO(fd.data);
     }
     getCI()
     getCO()
