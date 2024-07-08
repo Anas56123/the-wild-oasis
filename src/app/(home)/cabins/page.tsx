@@ -1,48 +1,30 @@
 "use client";
 import Table from "@/Components/CabinsTable";
 import { getCabins } from "@/Data/GET/getCabins";
-import { getCabinsWithDiscount } from "@/Data/GET/getCabinsWithDiscount";
-import { getCabinsWithoutDiscount } from "@/Data/GET/getCabinsWithoutDiscount";
 import ClientOnly from "@/utils/ClientOnly";
 import { useEffect, useState } from "react";
 
-type BtnBg = "" | "btn-1" | "btn-2" | "btn-3";
+type WOrWOOptions = "all" | "number" | null;
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [dataWithDiscount, setDataWithDiscount] = useState([]);
-  const [dataWithoutDiscount, setDataWithoutDiscount] = useState([]);
-  const [bg, setBg] = useState<BtnBg>("btn-1");
-  const [bgClick, setBgClick] = useState<BtnBg>("btn-1");
+  const options: { label: string; value: WOrWOOptions }[] = [
+    { label: "All", value: "all" },
+    { label: "With discont", value: null },
+    { label: "Without discount", value: "number" },
+  ];
+  const [wOrWO, setWOrWO] = useState<WOrWOOptions>("all");
 
   useEffect(() => {
     async function getData() {
-      const fd: any = await getCabins();
+      const fd: any = await getCabins(wOrWO);
       setData(fd);
     }
-    async function getDataWithDiscount() {
-      const fd: any = await getCabinsWithDiscount();
-      setDataWithDiscount(fd);
-    }
-    async function getDataWithoutDiscount() {
-      const fd: any = await getCabinsWithoutDiscount();
-      setDataWithoutDiscount(fd);
-    }
     getData();
-    getDataWithDiscount();
-    getDataWithoutDiscount();
-  }, [bgClick]);
+  }, [wOrWO]);
 
-  function handleClick(state: BtnBg) {
-    setBgClick(state);
-  }
-
-  function handleMouseEnter(state: BtnBg) {
-    setBg(state);
-  }
-
-  function handleMouseLeave() {
-    setBg("");
+  function handleClickStatus(value: WOrWOOptions) {
+    setWOrWO(value);
   }
 
   return (
@@ -54,50 +36,21 @@ const Home = () => {
             All cabins
           </h1>
           <div className="transition-colors duration-300 border-slate-50 dark:border-slate-800 border bg-wihte w-80 rounded flex justify-between px-1 bg-white dark:bg-[#18212f]">
-            <button
-              onClick={() => handleClick("btn-1")}
-              onMouseEnter={() => handleMouseEnter("btn-1")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
-                bg == "btn-1" || bgClick == "btn-1" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-1" ? "border-slate-400 border" : ""}`}
-            >
-              All
-            </button>
-            <button
-              onClick={() => handleClick("btn-2")}
-              onMouseEnter={() => handleMouseEnter("btn-2")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
-                bg == "btn-2" || bgClick == "btn-2" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-2" ? "border-slate-400 border" : ""}`}
-            >
-              With discount
-            </button>
-            <button
-              onClick={() => handleClick("btn-3")}
-              onMouseEnter={() => handleMouseEnter("btn-3")}
-              onMouseLeave={() => handleMouseLeave()}
-              className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 ${
-                bg == "btn-3" || bgClick == "btn-3" ? "bg-indigo-500" : ""
-              } ${bgClick == "btn-3" ? "border-slate-400 border" : ""}`}
-            >
-              Without discount
-            </button>
+            {options.map((option, index) => (
+              <button
+                onClick={() => handleClickStatus(option.value)}
+                className={`transition-colors duration-300 rounded px-1 dark:text-slate-50 hover:bg-indigo-500 ${
+                  wOrWO == option.value ? "bg-indigo-500" : ""
+                }`}
+                key={index}
+              >
+                {option.label}
+              </button>
+            ))}
           </div>
         </div>
         <br />
-        <Table
-          data={
-            bgClick == "btn-1"
-              ? data
-              : bgClick == "btn-3"
-                ? dataWithDiscount
-                : bgClick == "btn-2"
-                  ? dataWithoutDiscount
-                  : []
-          }
-        />
+        <Table data={data} />
       </div>
     </ClientOnly>
   );
