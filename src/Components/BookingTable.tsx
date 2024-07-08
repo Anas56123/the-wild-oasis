@@ -1,6 +1,6 @@
-import { useQueries } from "react-query";
+"use client";
+import { ItemPerPage } from "@/app/(home)/bookings/page";
 import LoadingSpinner from "./LoadingSpinner";
-import { getGuestsByID } from "@/Data/GET/getGuestsByID";
 
 interface TableProps {
   data: {
@@ -12,28 +12,12 @@ interface TableProps {
     status: string;
     totalPrice: number;
   }[];
+  setPageNum: Function;
+  pageNum: number;
+  dataLength: number;
 }
 
-const Table: React.FC<TableProps> = ({ data }) => {
-  const userQueries: any = useQueries(
-    data.map((item: any) => {
-      return {
-        queryKey: ["item", item.guestsID],
-        queryFn: () => getGuestsByID(item.guestsID),
-      };
-    })
-  );
-
-  const newData = data.map((item: any) => ({
-    ...item,
-    guestsEmail: userQueries?.find(
-      (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
-    )?.data?.[0]?.email,
-    fullName: userQueries?.find(
-      (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
-    )?.data?.[0]?.fullName,
-  }));
-
+const Table: React.FC<TableProps> = ({ data, setPageNum, pageNum, dataLength }) => {
   return (
     <>
       <div
@@ -49,17 +33,17 @@ const Table: React.FC<TableProps> = ({ data }) => {
         </header>
         <hr />
         <section className="divide-[#1f2937] divide-y bg-[#18212f]">
-          {newData?.map((item: any) => (
+          {data?.map((item: any) => (
             <div
               className="flex justify-between items-center w-full px-6 py-3"
               key={item.id}
             >
               <div className="w-16">{"00" + item.cabinID}</div>
               <div className="w-56">
-                <span>{item.fullName}</span>
+                <span>{item.Guests.fullName}</span>
                 <br />
                 <span className="text-sm text-[#9ca3af]">
-                  {item.guestsEmail}
+                  {item.Guests.email}
                 </span>
               </div>
               <div className="w-72">DATES</div>
@@ -85,14 +69,23 @@ const Table: React.FC<TableProps> = ({ data }) => {
         <hr />
         <footer className="m-4 flex items-center justify-between bg-[#111827]">
           <p>
-            Showing <strong>1</strong> to <strong>{data.length}</strong> of{" "}
-            <strong>{data.length}</strong> results
+            Showing <strong>{1 + pageNum * (dataLength / ItemPerPage -1)}</strong> to{" "}
+            <strong>{data.length + pageNum * (dataLength / ItemPerPage -1)}</strong> of{" "}
+            <strong>{dataLength}</strong> results
           </p>
           <div className="flex gap-5">
-            <button className="cursor-not-allowed" disabled>
+            <button
+              className={`${pageNum == 0 ? "cursor-not-allowed" : ""}`}
+              disabled={pageNum == 0 ? true : false}
+              onClick={() => setPageNum(pageNum - 1)}
+            >
               {"<"} Previous
             </button>
-            <button className="cursor-not-allowed" disabled>
+            <button
+              className={`${pageNum == (dataLength / ItemPerPage -1) ? "cursor-not-allowed" : ""}`}
+              disabled={pageNum == (dataLength / ItemPerPage -1) ? true : false}
+              onClick={() => setPageNum(pageNum + 1)}
+            >
               Next {">"}
             </button>
           </div>

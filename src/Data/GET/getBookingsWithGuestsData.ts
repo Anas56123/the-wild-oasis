@@ -1,15 +1,22 @@
 import supabase from "../Supabase/Supabase";
 
-export const getBookingsWithGuestsData = async (status: string) => {
-  let { data, error } = await supabase
+export const getBookingsWithGuestsData = async (
+  status: string,
+  pagenation: Function,
+) => {
+  let { from, to } = pagenation();
+  let { data, error, count } = await supabase
     .from("Bookings")
-    .select("*, Guests(fullName, countryFlag)")
+    .select("*, Guests(fullName, countryFlag, email)", {count: 'exact'})
     .or(`status.ilike.%${status}%`)
-    .order("id", { ascending: true });
+    .order("id", { ascending: true })
+    .range(from-1, to-1);
 
   if (error) {
     console.error(error);
   }
 
-  return data;
+  console.log(count);
+
+  return {data, count};
 };
