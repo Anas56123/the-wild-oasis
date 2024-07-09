@@ -1,6 +1,7 @@
 "use client";
 import { ItemPerPage } from "@/app/(home)/bookings/page";
 import LoadingSpinner from "./LoadingSpinner";
+import { useEffect, useState } from "react";
 
 interface TableProps {
   data: {
@@ -15,9 +16,25 @@ interface TableProps {
   setPageNum: Function;
   pageNum: number;
   dataLength: number;
+  getFromAndTo: Function;
 }
 
-const Table: React.FC<TableProps> = ({ data, setPageNum, pageNum, dataLength }) => {
+const Table: React.FC<TableProps> = ({
+  data,
+  setPageNum,
+  pageNum,
+  dataLength,
+  getFromAndTo,
+}) => {
+  let { to, from } = getFromAndTo();
+  console.log(
+    "dataLength & ItemPerPage:",
+    dataLength,
+    Math.ceil(dataLength / ItemPerPage),
+    ItemPerPage,
+    pageNum
+  );
+
   return (
     <>
       <div
@@ -49,7 +66,7 @@ const Table: React.FC<TableProps> = ({ data, setPageNum, pageNum, dataLength }) 
               <div className="w-72">DATES</div>
               <div className="w-24">
                 <mark
-                  className={`transition-colors duration-300  dark:text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
+                  className={`transition-colors duration-300 dark:text-slate-50 font-semibold text-xs px-2 py-1 rounded-full ${
                     item.status == "unconfirmed"
                       ? "dark:bg-sky-800 bg-sky-100 text-sky-800"
                       : item.status == "check in"
@@ -69,22 +86,26 @@ const Table: React.FC<TableProps> = ({ data, setPageNum, pageNum, dataLength }) 
         <hr />
         <footer className="m-4 flex items-center justify-between bg-[#111827]">
           <p>
-            Showing <strong>{1 + pageNum * (dataLength / ItemPerPage -1)}</strong> to{" "}
-            <strong>{data.length + pageNum * (dataLength / ItemPerPage -1)}</strong> of{" "}
+            Showing <strong>{from + 1}</strong> to{" "}
+            <strong>{to + 1 > dataLength ? dataLength : to + 1}</strong> of{" "}
             <strong>{dataLength}</strong> results
           </p>
           <div className="flex gap-5">
             <button
-              className={`${pageNum == 0 ? "cursor-not-allowed" : ""}`}
-              disabled={pageNum == 0 ? true : false}
+              className={`${pageNum == 1 ? "cursor-not-allowed" : ""}`}
+              disabled={pageNum == 1 ? true : false}
               onClick={() => setPageNum(pageNum - 1)}
             >
               {"<"} Previous
             </button>
             <button
-              className={`${pageNum == (dataLength / ItemPerPage -1) ? "cursor-not-allowed" : ""}`}
-              disabled={pageNum == (dataLength / ItemPerPage -1) ? true : false}
-              onClick={() => setPageNum(pageNum + 1)}
+              className={`${pageNum == Math.ceil(dataLength / ItemPerPage) ? "cursor-not-allowed" : ""}`}
+              disabled={
+                pageNum == Math.ceil(dataLength / ItemPerPage) ? true : false
+              }
+              onClick={() => {
+                setPageNum(pageNum + 1);
+              }}
             >
               Next {">"}
             </button>

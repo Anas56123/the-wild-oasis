@@ -10,7 +10,7 @@ export const getBookingsWithGuestsData = async (
     .select("*, Guests(fullName, countryFlag, email)", {count: 'exact'})
     .or(`status.ilike.%${status}%`)
     .order("id", { ascending: true })
-    .range(from-1, to-1);
+    .range(from, to);
 
   if (error) {
     console.error(error);

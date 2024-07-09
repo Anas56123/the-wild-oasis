@@ -3,14 +3,14 @@ import Table from "@/Components/BookingTable";
 import { getBookingsWithGuestsData } from "@/Data/GET/getBookingsWithGuestsData";
 import { useEffect, useState } from "react";
 
-export const ItemPerPage = 4;
+export let ItemPerPage = 10;
 
 type statusValues = "" | "unconfirmed" | "check in" | "check out";
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState<statusValues>("");
-  const [pageNum, setPageNum] = useState<number>(0);
+  const [pageNum, setPageNum] = useState<number>(1);
 
   const statusOptions: { value: statusValues; label: string }[] = [
     { value: "", label: "All" },
@@ -31,17 +31,16 @@ const Home = () => {
 
   function handleClickStatus(state: statusValues) {
     setStatus(state);
+    setPageNum(1);
   }
 
   function getFromAndTo() {
-    let from = pageNum * ItemPerPage;
-    let to = from + ItemPerPage;
-    if (pageNum > 0) {
-      from += 1;
-    }
+    let from = (pageNum - 1) * ItemPerPage;
+    let to = from + ItemPerPage - 1;
+
     return { from, to };
   }
-
+  console.log(getFromAndTo(), count);
   return (
     <>
       <div className="transition-colors duration-300 flex flex-col items-center dark:text-slate-50">
@@ -69,6 +68,7 @@ const Home = () => {
           setPageNum={setPageNum}
           pageNum={pageNum}
           dataLength={count}
+          getFromAndTo={getFromAndTo}
         />
       </div>
     </>
