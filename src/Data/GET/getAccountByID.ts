@@ -1,10 +1,9 @@
 import supabase from "../Supabase/Supabase";
 
-export async function getAccountByEmail(email: string) {
+export async function getAccountByID(id: string) {
   let { data, error } = await supabase
-    .from("Accounts")
-    .select("*")
-    .eq("email", email);
+    .from("accounts")
+    .select(`id,${id}`);
 
   console.error({ error });
   return data;

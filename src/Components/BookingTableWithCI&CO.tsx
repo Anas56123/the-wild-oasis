@@ -31,9 +31,9 @@ const Table: React.FC<TableProps> = ({ data }) => {
     countryFlag: userQueries?.find(
       (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
     )?.data?.[0]?.countryFlag,
-    fullName: userQueries?.find(
+    full_name: userQueries?.find(
       (element: any) => (element as any)?.data?.[0]?.id === item?.guestsID
-    )?.data?.[0]?.fullName,
+    )?.data?.[0]?.full_name,
   }));
   console.log(newData);
 
@@ -71,7 +71,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
                   />
                 </td>
                 <td className="transition-colors duration-300 py-1">
-                  {item.fullName}
+                  {item.full_name}
                 </td>
                 <td className="transition-colors duration-300 px-6 py-1 whitespace-nowrap">
                   {item.numNights}

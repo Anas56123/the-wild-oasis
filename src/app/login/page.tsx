@@ -1,9 +1,10 @@
 "use client";
-import { getAccountByEmail } from "@/Data/GET/getAccountsByEmail";
 import Image from "next/image";
 import Logo from "../../../public/logo-light.png";
 import { useRouter } from "next/navigation";
 import { FormEventHandler, useState } from "react";
+import supabase from "@/Data/Supabase/Supabase";
+import { getAccounts } from "@/Data/GET/getAccounts";
 
 type FormData = {
   email: string;
@@ -16,21 +17,23 @@ export default function Home() {
     password: "",
   });
   const [data, setData] = useState([]);
+  let id = "";
   const router = useRouter();
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     console.log("FormData: ", formData);
     async function getData() {
-      const fd: any = await getAccountByEmail(formData.email);
+      const fd: any = await getAccounts();
       setData(fd);
-      console.log("Data: ", data);
-      localStorage.setItem("accountEmail", formData.email);
-      if (localStorage.getItem("accountEmail")) {
-        router.push("/dashboard");
-      }
+      id = fd.session.user.id;
     }
     getData();
+    localStorage.setItem("accountID", id);
+    const { data, error } = await supabase.auth.signInWithPassword(formData);
+    if (localStorage.getItem("accountEmail")) {
+      router.push("/dashboard");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

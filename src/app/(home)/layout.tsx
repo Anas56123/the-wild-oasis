@@ -5,9 +5,9 @@ import LogoN from "../../../public/logo-dark.png";
 import LogoL from "../../../public/logo-light.png";
 import UD from "../../../public/default-user.jpg";
 import Image from "next/image";
-import { getAccountByEmail } from "@/Data/GET/getAccountsByEmail";
 import { usePathname, useRouter } from "next/navigation";
 import { DarkModeProvider, useDarkMode } from "@/context/darklightContext";
+import { getAccountByID } from "@/Data/GET/getAccountByID";
 
 type LinkBg = "" | "link-1" | "link-2" | "link-3" | "link-4" | "link-5";
 type FetchedData =
@@ -15,8 +15,8 @@ type FetchedData =
       {
         email: string;
         password: string;
-        userName: string;
-        phoneNumber: string;
+        full_name: string;
+        phone_number: string;
         avatar: string;
       },
     ]
@@ -171,9 +171,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     async function getData() {
-      const fd: any = await getAccountByEmail(
-        String(localStorage.getItem("accountEmail"))
-      );
+      const fd: any = await getAccountByID(String(localStorage.getItem('accountID')))
       setData(fd);
       console.log(data);
     }
@@ -294,17 +292,17 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
               </Link>
               <div className="transition-colors duration-300 flex gap-4 items-center flex-row-reverse">
                 <p className="transition-colors duration-300 font-bold dark:text-slate-50 text-stone-400 text-xs">
-                  {data ? data[0]?.userName : ""}
+                  {data ? data[0]?.full_name : ""}
                 </p>
                 <Image
                   height="30"
                   width="30"
                   className="transition-colors duration-300 rounded-full"
-                  src={data ? (data[0]?.avatar ? data[0]?.avatar : "") : UD}
+                  src={data ? (data[0]?.avatar ? data[0]?.avatar : UD) : UD}
                   alt="Logo"
                 />
               </div>
-            </div>
+            </div>  
           </header>
           <div className="transition-colors duration-300 h-less-screen-me scroll-smooth overflow-auto">
             {children}

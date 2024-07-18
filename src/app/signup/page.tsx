@@ -7,7 +7,7 @@ type FormData = {
   email: string;
   password: string;
   userName: string;
-  phoneNumber: string;
+  phone_number: string;
 };
 
 export default function Home() {
@@ -15,39 +15,39 @@ export default function Home() {
     email: "",
     password: "",
     userName: "",
-    phoneNumber: "",
+    phone_number: "",
   });
   const [error, setError] = useState("");
   const router = useRouter();
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    const firstDigit = formData.phoneNumber.charAt(0);
-    if (formData.phoneNumber.length !== 8) {
-      console.log(formData.phoneNumber.length);
-      setError("The phone number must be 8 digits");
-      return;
-    }
-    if (!["9", "5", "4", "2"].includes(firstDigit)) {
-      setError("The phone number must start with 2, 3, 5 or 9");
-      return;
-    }
-    if (formData.password.length < 8) {
-      setError("The password must be at least 8 charaters");
-      return;
-    }
-    if (formData.userName.length < 3) {
-      setError("The user name must be at least 3 charaters");
-      return;
-    }
-    setError("");
-    console.log("FormData: ", formData);
+    // const firstDigit = formData.phone_number.charAt(0);
+    // if (formData.phone_number.length !== 8) {
+    //   console.log(formData.phone_number.length);
+    //   setError("The phone number must be 8 digits");
+    //   return;
+    // }
+    // if (!["9", "5", "4", "2"].includes(firstDigit)) {
+    //   setError("The phone number must start with 2, 3, 5 or 9");
+    //   return;
+    // }
+    // if (formData.password.length < 8) {
+    //   setError("The password must be at least 8 charaters");
+    //   return;
+    // }
+    // if (formData.userName.length < 3) {
+    //   setError("The user name must be at least 3 charaters");
+    //   return;
+    // }
+    // setError("");
+    // console.log("FormData: ", formData);
     async function getData() {
       await insertAccount(formData);
-      localStorage.setItem("accountEmail", formData.email);
-      if (localStorage.getItem("accountEmail")) {
-        router.push("/dashboard");
-      }
+      // localStorage.setItem("accountEmail", formData.email);
+      // if (localStorage.getItem("accountEmail")) {
+      //   router.push("/dashboard");
+      // }
     }
     getData();
   };
@@ -116,8 +116,8 @@ export default function Home() {
             <input
               className="transition-colors duration-300 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f]"
               type="text"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              name="phone_number"
+              value={formData.phone_number}
               onChange={handleChange}
               required
             />

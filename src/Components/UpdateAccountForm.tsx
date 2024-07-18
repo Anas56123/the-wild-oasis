@@ -1,22 +1,44 @@
 "use client";
+import { getAccountByID } from "@/Data/GET/getAccountByID";
+import { insertURLBucket } from "@/Data/INSERT/insertURLBucket";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 interface IFormInput {
-  fullName: string;
+  full_name: string;
   file: File | null;
 }
 
 export default function UpdateAccountForm() {
+  const [data, setData] = useState([]);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInput>({
-    defaultValues: { fullName: "", file: null },
+    defaultValues: { full_name: "", file: null },
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) =>
-    console.log("RHF", data);
+  const onSubmit: SubmitHandler<IFormInput> = async (submitedData) => {
+    console.log("RHF", submitedData);
+    insertURLBucket(
+      submitedData?.file,
+      submitedData.full_name,
+      String(localStorage.getItem("accountID"))
+    );
+  };
+
+  useEffect(() => {
+    async function getData() {
+      const fd: any = await getAccountByID(
+        String(localStorage.getItem("accountID"))
+      );
+      setData(fd);
+      console.log(data);
+    }
+    getData();
+  }, []);
 
   return (
     <div>
@@ -30,15 +52,15 @@ export default function UpdateAccountForm() {
           type="email"
           className="transition-colors duration-300 cursor-not-allowed rounded dark:text-[#9ca3af] border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#374151] my-3"
           disabled
-          value={String(localStorage.getItem("email"))}
+          value={String(localStorage.getItem("accountEmail"))}
         />
         <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
         <br />
-        <label htmlFor="fullName">Full Name</label>
+        <label htmlFor="full_name">Full Name</label>
         <input
           type="text"
           className="transition-colors duration-300 rounded dark:text-slate-50 border w-72 h-10 border-slate-100 dark:border-slate-600 dark:bg-[#18212f] my-3"
-          {...register("fullName", {
+          {...register("full_name", {
             required: "Full name is required..",
             minLength: {
               value: 3,
@@ -50,8 +72,8 @@ export default function UpdateAccountForm() {
             },
           })}
         />
-        {errors.fullName && (
-          <p className="text-red-500">{errors.fullName.message}</p>
+        {errors.full_name && (
+          <p className="text-red-500">{errors.full_name.message}</p>
         )}
         <hr className="transition-colors duration-300 dark:border-[#1f2937] border-[#f3f4f6]" />
         <br />

@@ -28,11 +28,11 @@ export default function Home() {
   useEffect(() => {
     async function getCI(){
       const fd = await getBookingsWithGuestsData('check in', getFromAndTo);
-      setDataCI(fd.data);
+      setDataCI(fd?.data);
     }
     async function getCO(){
       const fd = await getBookingsWithGuestsData('check out', getFromAndTo);
-      setDataCO(fd.data);
+      setDataCO(fd?.data);
     }
     getCI()
     getCO()

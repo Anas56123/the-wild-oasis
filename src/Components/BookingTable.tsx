@@ -57,7 +57,7 @@ const Table: React.FC<TableProps> = ({
             >
               <div className="w-16">{"00" + item.cabinID}</div>
               <div className="w-56">
-                <span>{item.Guests.fullName}</span>
+                <span>{item.Guests.full_name}</span>
                 <br />
                 <span className="text-sm text-[#9ca3af]">
                   {item.Guests.email}
